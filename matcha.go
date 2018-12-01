@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/blavkboy/matcha/core"
 	"github.com/blavkboy/matcha/models"
 	"github.com/gorilla/mux"
 )
@@ -75,6 +76,7 @@ type data struct {
 
 //In main we will handle all requests to the server
 func main() {
+	db := core.GetDB()
 	users = append(users, *d)
 	r := mux.NewRouter()
 	fs := http.FileServer(http.Dir("assets/"))
