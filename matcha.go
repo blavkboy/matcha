@@ -26,41 +26,28 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//array we will keep users in
-var users []models.User
-
-//sample user to add to the array
-var d = &models.User{
-	ID:       "1",
-	Username: "The dark one",
-	Fname:    "El Pharoah",
-	Lname:    "",
-	Email:    "akjhdskjahsdkjh@sponges.com",
-	Password: "akjsdghhjakhdksjadklashdklad",
-	Bio: &models.Bio{
-		Caddress: nil,
-		Oaddress: &models.Address{
-			Street1:  "352",
-			Street2:  "Du Toit Street",
-			Suburb:   "Wierda Park",
-			City:     "Pretoria",
-			Province: "Gauteng",
-		},
-		Sexuality: &models.Sexuality{
-			Sex:         models.Male,
-			Orientation: models.Hetero,
-			Looking:     models.Fun,
-			Preferences: nil,
-		},
-		Hobbies:   nil,
-		Interests: nil,
-	},
+//handleUsers will only be used when a parameter is passed to the handler function
+func handleUsers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	vars := mux.Vars(r)
+	for _, u := range users {
+		if u.ID == vars["id"] {
+			json.NewEncoder(w).Encode(u)
+		}
+	}
 }
 
-//handle Users will handle requests to get the users from the browser.
+//handle User will handle requests to get the users from the browser.
 func handleUser(w http.ResponseWriter, r *http.Request) {
-	//vars := mux.Vars(r)
+	vars := mux.Vars(r)
+	//we process get request and return either the selected user or
+	//all the users
+	//Todo: refine search capabilities and make this more efficient
 	if r.Method == "GET" {
+		if vars["id"] != "" {
+			handleUsers(w, r)
+			return
+		}
 		tmpl, err := template.ParseFiles("views/root.html")
 		if err != nil {
 			fmt.Println(err)
