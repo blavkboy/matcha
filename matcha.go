@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/blavkboy/matcha/core"
+	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
 	"github.com/gorilla/mux"
 )
@@ -40,11 +40,13 @@ func handleUsers(w http.ResponseWriter, r *http.Request) {
 
 //handle User will handle requests to get the users from the browser.
 func handleUser(w http.ResponseWriter, r *http.Request) {
+	mlogger := mlogger.GetInstance()
 	vars := mux.Vars(r)
 	//we process get request and return either the selected user or
 	//all the users
 	//Todo: refine search capabilities and make this more efficient
 	if r.Method == "GET" {
+		mlogger.Println("Recieved 'GET' request from: " + r.UserAgent())
 		if vars["id"] != "" {
 			handleUsers(w, r)
 			return
@@ -76,11 +78,10 @@ type data struct {
 
 //In main we will handle all requests to the server
 func main() {
-	db := core.GetDB()
+	mlogger := mlogger.GetInstance()
+	mlogger.Println("Starting 'Matcha' dating service API")
 	users = append(users, *d)
 	r := mux.NewRouter()
-	fs := http.FileServer(http.Dir("assets/"))
-	http.Handle("/assets/", http.StripPrefix("/static/", fs))
 	r.HandleFunc("/", handleRoot)
 	r.HandleFunc("/users", handleUser).Methods("GET", "POST")
 	r.HandleFunc("/users/{id}", handleUser).Methods("GET")
