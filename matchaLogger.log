@@ -1,7 +1,5 @@
 Matcha matcha.go:16: Starting 'Matcha' dating service API
-Matcha routing.go:44: Recieved 'GET' request from: PostmanRuntime/7.1.5
-Matcha routing.go:44: Recieved 'GET' request from: PostmanRuntime/7.1.5
-Matcha routing.go:44: Recieved 'GET' request from: PostmanRuntime/7.1.5
-Matcha routing.go:44: Recieved 'GET' request from: PostmanRuntime/7.1.5
-Matcha routing.go:44: Recieved 'GET' request from: PostmanRuntime/7.1.5
-Matcha routing.go:44: Recieved 'GET' request from: PostmanRuntime/7.1.5
+Matcha auth.go:66: map[Email:sickboy@mailinator.com Password:akasjdhasjdasd ID:2 Username:El Toro Fname:Jeffery Lname:Chilwane]
+Matcha routing.go:46: Recieved 'GET' request from: PostmanRuntime/7.4.0
+Matcha auth.go:66: map[ID:2 Username:El Toro Fname:Jeffery Lname:Chilwane Email:sickboy@mailinator.com Password:akasjdhasjdasd]
+Matcha routing.go:46: Recieved 'GET' request from: PostmanRuntime/7.4.0

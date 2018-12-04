@@ -33,6 +33,8 @@ func HandleUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 //HandleUser will handle requests to get the users from the browser.
+//we can abstract some of it to make the login method and let the user
+//keep his/her state using the token
 func HandleUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	mlogger := mlogger.GetInstance()

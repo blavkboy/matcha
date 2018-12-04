@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
 	jwt "github.com/dgrijalva/jwt-go"
 )
@@ -31,9 +32,12 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 
 			// Sign and get the complete encoded token as a string using the secret
 			tokenString, err := token.SignedString(mySigningKey)
+			if err != nil {
+				logger := mlogger.GetInstance()
+				logger.Println("Error: ", err)
+				return
+			}
 
-			fmt.Println(tokenString, err)
-			fmt.Println(token)
 			exp := time.Now().Add(time.Hour * (24 * 7))
 			cookie := http.Cookie{Name: authToken, Value: tokenString, Expires: exp}
 			http.SetCookie(w, &cookie)
@@ -43,6 +47,7 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 }
 
 func confirmUser(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+	logger := mlogger.GetInstance()
 	cookie, err := r.Cookie(authToken)
 	if err != nil {
 		failedAuth(w, r)
@@ -51,15 +56,18 @@ func confirmUser(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) 
 	tokenString := cookie.Value
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+			logger.Println("Error: Unexpected signing method: ", token.Header["alg"])
+			return nil, fmt.Errorf("Error: Unexpected signing method: %v", token.Header["alg"])
 		}
 
 		return mySigningKey, nil
 	})
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		fmt.Fprint(w, "\n", claims["user"])
+		logger.Println(claims["user"])
 	} else {
-		fmt.Fprint(w, "Error, failed to authorize user")
+		logger.Println("Error: failed to authorize user")
+		failedAuth(w, r)
+		return
 	}
 	next(w, r)
 }
