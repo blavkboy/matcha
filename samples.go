@@ -29,6 +29,3 @@ var d = &models.User{
 		Interests: nil,
 	},
 }
-
-//array we will keep users in
-var users []models.User
