@@ -10,22 +10,4 @@ var d = &models.User{
 	Lname:    "",
 	Email:    "akjhdskjahsdkjh@sponges.com",
 	Password: "akjsdghhjakhdksjadklashdklad",
-	Bio: &models.Bio{
-		Caddress: nil,
-		Oaddress: &models.Address{
-			Street1:  "352",
-			Street2:  "Du Toit Street",
-			Suburb:   "Wierda Park",
-			City:     "Pretoria",
-			Province: "Gauteng",
-		},
-		Sexuality: &models.Sexuality{
-			Sex:         models.Male,
-			Orientation: models.Hetero,
-			Looking:     models.Fun,
-			Preferences: nil,
-		},
-		Hobbies:   nil,
-		Interests: nil,
-	},
 }

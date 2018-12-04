@@ -1,1 +1,3 @@
-Matcha matcha.go:15: Starting 'Matcha' dating service API
+Matcha matcha.go:16: Starting 'Matcha' dating service API
+Matcha routing.go:44: Recieved 'GET' request from: PostmanRuntime/7.1.5
+Matcha routing.go:44: Recieved 'GET' request from: PostmanRuntime/7.1.5

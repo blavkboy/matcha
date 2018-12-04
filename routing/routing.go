@@ -2,10 +2,7 @@ package routing
 
 import (
 	"encoding/json"
-	"fmt"
-	"html/template"
 	"net/http"
-	"os"
 	"strings"
 
 	"github.com/blavkboy/matcha/mlogger"
@@ -13,17 +10,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type middleWare func(next http.HandlerFunc) http.HandlerFunc
+
+//HandleRoot will handle calls to the root of the domain
 func HandleRoot(w http.ResponseWriter, r *http.Request) {
-	sampleData := models.Data{
-		PageTitle: "Root page",
-	}
+	w.Header().Set("Content-Type", "application/json")
+	sampleData := models.Data{}
 	if strings.Compare(r.Method, "GET") == 0 {
-		tmpl, err := template.ParseFiles("views/root.html")
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(0)
-		}
-		tmpl.Execute(w, sampleData)
+		json.NewEncoder(w).Encode(sampleData)
 	}
 }
 
@@ -40,6 +34,7 @@ func HandleUsers(w http.ResponseWriter, r *http.Request) {
 
 //HandleUser will handle requests to get the users from the browser.
 func HandleUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	mlogger := mlogger.GetInstance()
 	vars := mux.Vars(r)
 	//we process get request and return either the selected user or
@@ -51,17 +46,8 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 			HandleUsers(w, r)
 			return
 		}
-		tmpl, err := template.ParseFiles("views/root.html")
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		tmpl.Execute(w, models.Data{
-			PageTitle: "Test Page",
-			Data:      models.Users,
-		})
+		json.NewEncoder(w).Encode(models.Users)
 	} else if r.Method == "POST" {
-		w.Header().Set("Content-Type", "application/json")
 		var body models.User
 		json.NewDecoder(r.Body).Decode(&body)
 		models.Users = append(models.Users, body)

@@ -6,6 +6,7 @@ import (
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
 	"github.com/blavkboy/matcha/routing"
+	"github.com/blavkboy/matcha/services/auth"
 	"github.com/gorilla/mux"
 )
 
@@ -15,8 +16,8 @@ func main() {
 	mlogger.Println("Starting 'Matcha' dating service API")
 	models.Users = append(models.Users, *d)
 	r := mux.NewRouter()
-	r.HandleFunc("/", routing.HandleRoot)
-	r.HandleFunc("/users", routing.HandleUser).Methods("GET", "POST")
-	r.HandleFunc("/users/{id}", routing.HandleUser).Methods("GET")
+	r.HandleFunc("/", auth.NewToken(routing.HandleRoot)).Methods("GET")
+	r.HandleFunc("/users", auth.NewToken(routing.HandleUser)).Methods("GET", "POST")
+	r.HandleFunc("/users/{id}", auth.NewToken(routing.HandleUser)).Methods("GET")
 	http.ListenAndServe(":8080", r)
 }
