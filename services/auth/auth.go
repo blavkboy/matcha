@@ -34,7 +34,7 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 
 			fmt.Println(tokenString, err)
 			fmt.Println(token)
-			exp := time.Now().Add(time.Hour * 48)
+			exp := time.Now().Add(time.Hour * (24 * 7))
 			cookie := http.Cookie{Name: authToken, Value: tokenString, Expires: exp}
 			http.SetCookie(w, &cookie)
 		}
@@ -57,7 +57,7 @@ func confirmUser(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) 
 		return mySigningKey, nil
 	})
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		fmt.Fprint(w, "\n", claims)
+		fmt.Fprint(w, "\n", claims["user"])
 	} else {
 		fmt.Fprint(w, "Error, failed to authorize user")
 	}
