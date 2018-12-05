@@ -1,5 +1,3 @@
 Matcha matcha.go:16: Starting 'Matcha' dating service API
-Matcha auth.go:66: map[Email:sickboy@mailinator.com Password:akasjdhasjdasd ID:2 Username:El Toro Fname:Jeffery Lname:Chilwane]
-Matcha routing.go:46: Recieved 'GET' request from: PostmanRuntime/7.4.0
-Matcha auth.go:66: map[ID:2 Username:El Toro Fname:Jeffery Lname:Chilwane Email:sickboy@mailinator.com Password:akasjdhasjdasd]
-Matcha routing.go:46: Recieved 'GET' request from: PostmanRuntime/7.4.0
+Matcha routing.go:39: Storing user:  {ObjectIdHex("")     }
+Matcha db.go:26: Error:  ObjectIDs must be exactly 12 bytes long (got 0)

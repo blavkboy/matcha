@@ -2,12 +2,13 @@ package routing
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strings"
 
+	"github.com/blavkboy/matcha/database"
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
-	"github.com/gorilla/mux"
 )
 
 type middleWare func(next http.HandlerFunc) http.HandlerFunc
@@ -21,37 +22,21 @@ func HandleRoot(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//HandleUsers will only be used when a parameter is passed to the handler function
-func HandleUsers(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	vars := mux.Vars(r)
-	for _, u := range models.Users {
-		if u.ID == vars["id"] {
-			json.NewEncoder(w).Encode(u)
-		}
-	}
-}
-
 //HandleUser will handle requests to get the users from the browser.
 //we can abstract some of it to make the login method and let the user
 //keep his/her state using the token
 func HandleUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	mlogger := mlogger.GetInstance()
-	vars := mux.Vars(r)
 	//we process get request and return either the selected user or
 	//all the users
 	//Todo: refine search capabilities and make this more efficient
-	if r.Method == "GET" {
-		mlogger.Println("Recieved 'GET' request from: " + r.UserAgent())
-		if vars["id"] != "" {
-			HandleUsers(w, r)
-			return
-		}
-		json.NewEncoder(w).Encode(models.Users)
-	} else if r.Method == "POST" {
+	if r.Method == "POST" {
+		fmt.Println("Got this far")
 		var body models.User
 		json.NewDecoder(r.Body).Decode(&body)
-		models.Users = append(models.Users, body)
+		fmt.Println(body)
+		mlogger.Println("Storing user: ", body)
+		database.SaveUser("users", &body)
 	}
 }

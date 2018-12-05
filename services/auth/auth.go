@@ -28,8 +28,6 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 				"exp":     time.Now().AddDate(0, 0, 7),
 			})
 			models.Users = append(models.Users, user)
-			r.URL.Path = r.URL.Path + "/" + user.ID
-
 			// Sign and get the complete encoded token as a string using the secret
 			tokenString, err := token.SignedString(mySigningKey)
 			if err != nil {
@@ -42,7 +40,7 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 			cookie := http.Cookie{Name: authToken, Value: tokenString, Expires: exp}
 			http.SetCookie(w, &cookie)
 		}
-		confirmUser(w, r, next)
+		next(w, r)
 	}
 }
 

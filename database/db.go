@@ -1,21 +1,28 @@
 package database
 
 import (
+	"fmt"
+
+	"github.com/blavkboy/matcha/mlogger"
+	"github.com/blavkboy/matcha/models"
 	"gopkg.in/mgo.v2"
 )
 
 var dbSession mgo.Session
 
 //StartSession will start our session with mongodb
-func StartSession() {
+func SaveUser(collection string, obj *models.User) {
+	logger := mlogger.GetInstance()
 	dbSession, err := mgo.Dial("localhost")
+	defer dbSession.Close()
 	if err != nil {
 		panic(err)
 	}
 	dbSession.SetMode(mgo.Monotonic, true)
-}
-
-func GetInstance(collection string) *mgo.Collection {
 	c := dbSession.DB("matcha_db").C(collection)
-	return c
+	fmt.Println("Got collection: ", c)
+	err = c.Insert(obj)
+	if err != nil {
+		logger.Println("Error: ", err)
+	}
 }
