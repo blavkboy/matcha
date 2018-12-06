@@ -1,6 +1,11 @@
 package models
 
 import (
+	"context"
+	"time"
+
+	"github.com/blavkboy/matcha/database"
+	"github.com/blavkboy/matcha/mlogger"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -18,4 +23,21 @@ type User struct {
 	Lname    string        `json:"lname" bson:"lname"`
 	Email    string        `json:"email" bson:"email"`
 	Password string        `json:"password" bson:"password"`
+}
+
+func NewUser(user *User) {
+	mlogger := mlogger.GetInstance()
+	err, client := database.InitDB()
+	if err != nil {
+		mlogger.Println("Error: ", err)
+		return
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+	defer cancel()
+	err = client.Connect(ctx)
+	if err != nil {
+		mlogger.Println("Error: ", err)
+	}
+	collection := client.Database("matcha").Collection("users")
+	res, err := collection.InsertOne(context.Background(), bson.M{"username"})
 }
