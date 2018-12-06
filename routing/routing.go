@@ -2,11 +2,9 @@ package routing
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strings"
 
-	"github.com/blavkboy/matcha/database"
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
 )
@@ -26,17 +24,17 @@ func HandleRoot(w http.ResponseWriter, r *http.Request) {
 //we can abstract some of it to make the login method and let the user
 //keep his/her state using the token
 func HandleUser(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	mlogger := mlogger.GetInstance()
 	//we process get request and return either the selected user or
 	//all the users
 	//Todo: refine search capabilities and make this more efficient
-	if r.Method == "POST" {
-		fmt.Println("Got this far")
-		var body models.User
-		json.NewDecoder(r.Body).Decode(&body)
-		fmt.Println(body)
-		mlogger.Println("Storing user: ", body)
-		database.SaveUser("users", &body)
-	}
+	var body models.User
+	json.NewDecoder(r.Body).Decode(&body)
+	mlogger.Println("Saving user")
+	models.NewUser(&body)
+	mlogger.Println(body)
+}
+
+func HandleUsers(w http.ResponseWriter, r *http.request) {
+	w.Header().Set("Content-Type", "application/json")
 }

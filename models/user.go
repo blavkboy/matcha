@@ -37,7 +37,21 @@ func NewUser(user *User) {
 	err = client.Connect(ctx)
 	if err != nil {
 		mlogger.Println("Error: ", err)
+		return
 	}
 	collection := client.Database("matcha").Collection("users")
-	res, err := collection.InsertOne(context.Background(), bson.M{"username"})
+	res, err := collection.InsertOne(context.Background(), bson.M{
+		"username": user.Username,
+		"fname":    user.Fname,
+		"lname":    user.Lname,
+		"email":    user.Email,
+		"password": user.Password,
+	})
+	if err != nil {
+		mlogger.Println("Error: ", err)
+		return
+	}
+	id := res.InsertedID
+	mlogger.Println("Insertion ID: ", id)
+	mlogger.Println("User: ", user)
 }
