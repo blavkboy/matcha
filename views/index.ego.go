@@ -13,12 +13,18 @@ import "context"
 func RenderIndex(w io.Writer, name string) {
 
 //line index.ego:6
-	_, _ = io.WriteString(w, "\n<!DOCTYPE html>\n<html>\n<head>\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/custom.css\">\n  <title>My Site</title>\n</head>\n<body>\n  <h1>Hello ")
-//line index.ego:13
+	_, _ = io.WriteString(w, "\n<!DOCTYPE html>\n<html>\n<head>\n  ")
+//line index.ego:9
+
+	ProduceHead(w)
+
+//line index.ego:12
+	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <center><h1>Hello ")
+//line index.ego:14
 	_, _ = io.WriteString(w, html.EscapeString(fmt.Sprint(name)))
-//line index.ego:13
-	_, _ = io.WriteString(w, "!</h1>\n</body>\n</html>\n")
-//line index.ego:16
+//line index.ego:14
+	_, _ = io.WriteString(w, "!</h1></center>\n</body>\n</html>\n")
+//line index.ego:17
 }
 
 var _ fmt.Stringer
