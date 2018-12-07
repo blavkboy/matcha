@@ -35,6 +35,6 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 	mlogger.Println(body)
 }
 
-func HandleUsers(w http.ResponseWriter, r *http.request) {
+func HandleUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 }
