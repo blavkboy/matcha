@@ -7,6 +7,7 @@ import (
 	"github.com/blavkboy/matcha/models"
 	"github.com/blavkboy/matcha/routing"
 	"github.com/blavkboy/matcha/services/auth"
+	"github.com/blavkboy/matcha/views"
 	"github.com/gorilla/mux"
 )
 
@@ -20,5 +21,8 @@ func main() {
 	//Register users to the users collectioon in the matcha database
 	r.HandleFunc("/users", routing.HandleUser).Methods("POST")
 	r.HandleFunc("/users", auth.NewToken(routing.HandleUsers)).Methods("GET")
+	r.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+		views.RenderIndex(w, "Tshepo")
+	})
 	http.ListenAndServe(":8080", r)
 }

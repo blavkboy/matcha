@@ -1,0 +1,7 @@
+<%
+package views
+
+func RenderIndex(w io.Writer, name string) {
+%>
+<h1>Hello <%= name %>!</h1>
+<% } %>

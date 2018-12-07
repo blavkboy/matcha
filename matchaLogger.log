@@ -1,5 +1,1 @@
-Matcha matcha.go:16: Starting 'Matcha' dating service API
-Matcha routing.go:37: Saving user
-Matcha user.go:55: Insertion ID:  ObjectID("5c092950c430a888efbbd375")
-Matcha user.go:56: User:  &{ObjectIdHex("") TuuMuch Tommy Lebombo akjhdskjahsdkjh@sponges.com akjsdghhjakhdksjadklashdklad}
-Matcha routing.go:39: {ObjectIdHex("") TuuMuch Tommy Lebombo akjhdskjahsdkjh@sponges.com akjsdghhjakhdksjadklashdklad}
+Matcha matcha.go:17: Starting 'Matcha' dating service API
