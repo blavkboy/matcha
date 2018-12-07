@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/blavkboy/matcha/mlogger"
-	"github.com/blavkboy/matcha/models"
 	"github.com/blavkboy/matcha/routing"
 	"github.com/blavkboy/matcha/services/auth"
 	"github.com/blavkboy/matcha/views"
@@ -15,9 +14,10 @@ import (
 func main() {
 	mlogger := mlogger.GetInstance()
 	mlogger.Println("Starting 'Matcha' dating service API")
-	models.Users = append(models.Users, *d)
 	r := mux.NewRouter()
+
 	//Register users to the users collectioon in the matcha database
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	r.HandleFunc("/users", routing.HandleUser).Methods("POST")
 	r.HandleFunc("/users", auth.NewToken(routing.HandleUsers)).Methods("GET")
 	r.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {

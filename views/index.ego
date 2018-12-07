@@ -3,5 +3,14 @@ package views
 
 func RenderIndex(w io.Writer, name string) {
 %>
-<h1>Hello <%= name %>!</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="http://localhost:8080/static/custom.css">
+  <title>My Site</title>
+</head>
+<body>
+  <h1>Hello <%= name %>!</h1>
+</body>
+</html>
 <% } %>
