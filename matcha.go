@@ -17,7 +17,6 @@ func main() {
 	mlogger.Println("Starting 'Matcha' dating service API")
 	models.Users = append(models.Users, *d)
 	r := mux.NewRouter()
-	r.HandleFunc("/", auth.NewToken(routing.HandleRoot)).Methods("GET")
 	//Register users to the users collectioon in the matcha database
 	r.HandleFunc("/users", routing.HandleUser).Methods("POST")
 	r.HandleFunc("/users", auth.NewToken(routing.HandleUsers)).Methods("GET")
