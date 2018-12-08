@@ -20,8 +20,8 @@ func main() {
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	r.HandleFunc("/users", routing.HandleUser).Methods("POST")
 	r.HandleFunc("/users", auth.NewToken(routing.HandleUsers)).Methods("GET")
-	r.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
-		views.RenderIndex(w, "Tshepo")
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		views.RenderIndex(w, "")
 	})
 	http.ListenAndServe(":8080", r)
 }
