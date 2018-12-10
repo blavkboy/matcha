@@ -23,7 +23,7 @@ func RenderIndex(w io.Writer) {
           <div class="container">
             <div class="modal">
               <div class="modal-background"></div>
-              <div class="modal-card">
+              <div class="modal-card animated zoomIn" style="width: 80%;">
               <header class="modal-card-head">
                 <p class="modal-card-title">Lovr Login</p>
                 <button class="delete" aria-label="close"></button>

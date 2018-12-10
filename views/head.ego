@@ -12,6 +12,7 @@ func ProduceHead(w io.Writer) {
 <title>My Site</title>
 
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/bulma.min.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/animate.css">
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/custom.css">
 
 <script defer src="http://localhost:8080/static/js/all.js"></script>
