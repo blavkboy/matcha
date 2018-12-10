@@ -21,7 +21,7 @@ func main() {
 	r.HandleFunc("/users", routing.HandleUser).Methods("POST")
 	r.HandleFunc("/users", auth.NewToken(routing.HandleUsers)).Methods("GET")
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		views.RenderIndex(w, "")
+		views.RenderIndex(w)
 	})
 	http.ListenAndServe(":8080", r)
 }

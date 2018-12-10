@@ -8,37 +8,21 @@ package views
 import "fmt"
 import "html"
 import "io"
-import "context"
+import
 
-import "strings"
+//line views/index.ego:6
+"context"
 
-func RenderIndex(w io.Writer, name string) {
+func RenderIndex(w io.Writer) {
 
-//line views/index.ego:8
 	_, _ = io.WriteString(w, "\n<!DOCTYPE html>\n<html>\n<head>\n  ")
-//line views/index.ego:11
+//line views/index.ego:9
 
 	ProduceHead(w)
 
-//line views/index.ego:14
-	_, _ = io.WriteString(w, "\n</head>\n<body style=\"background-image:url(http://localhost:8080/static/background/houndstooth-pattern.png)\">\n  <nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Cupid's Arrow</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\"><a href=\"Home</a></li>\n        <li><a href=\"#\">About</a></li>\n        <li><a href=\"#\">Contact</a></li>\n        <li><a href=\"#\">Blog</a></li>\n      </ul>\n    </div><!--/.nav-collapse -->\n  </div>\n  </nav>\n  <div class=\"container\">\n    <div class=\"starter-template\">\n      ")
-//line views/index.ego:39
-	if strings.Compare(name, "") != 0 {
-//line views/index.ego:40
-		_, _ = io.WriteString(w, "\n        <h1>Welcome ")
-//line views/index.ego:40
-		_, _ = io.WriteString(w, html.EscapeString(fmt.Sprint(name)))
-//line views/index.ego:40
-		_, _ = io.WriteString(w, "</h1>\n      ")
-//line views/index.ego:41
-	} else {
-//line views/index.ego:42
-		_, _ = io.WriteString(w, "\n        <h1>Cupid's Arrow</h1>\n      ")
-//line views/index.ego:43
-	}
-//line views/index.ego:44
-	_, _ = io.WriteString(w, "\n    </div>\n  </div>\n</body>\n</html>\n")
-//line views/index.ego:48
+//line views/index.ego:12
+	_, _ = io.WriteString(w, "\n</head>\n  <body>\n    <section class=\"hero is-primary is-bold is-fullheight\" style=\"align-items: center; justify-content: center;\">\n      <div class=\"hero-body\">\n        <div class=\"container\" style=\"text-align: center;\">\n          <h1 class=\"title is-large\">\n            Lovr\n          </h1>\n          <h2 class=\"subtitle is-large\">\n            Dating App\n          </h2>\n          <div class=\"container\">\n            <div class=\"buttons is-centered\">\n              <center><span class=\"button is-small is-primary is-inverted is-small\" style=\"margin-right: 5px;\">Login</span></center>\n              <center><span class=\"button is-small is-primary is-inverted is-small\" style=\"margin-left: 5px;\">Register</span></center>\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n  </body>\n</html>\n")
+//line views/index.ego:34
 }
 
 var _ fmt.Stringer

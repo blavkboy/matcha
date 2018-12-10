@@ -1,9 +1,7 @@
 <%
 package views
 
-import "strings"
-
-func RenderIndex(w io.Writer, name string) {
+func RenderIndex(w io.Writer) {
 %>
 <!DOCTYPE html>
 <html>
@@ -12,37 +10,25 @@ func RenderIndex(w io.Writer, name string) {
   ProduceHead(w)
   %>
 </head>
-<body style="background-image:url(http://localhost:8080/static/background/houndstooth-pattern.png)">
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Cupid's Arrow</a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-  </nav>
-  <div class="container">
-    <div class="starter-template">
-      <% if strings.Compare(name, "") != 0 { %>
-        <h1>Welcome <%= name %></h1>
-      <% } else { %>
-        <h1>Cupid's Arrow</h1>
-      <% } %>
-    </div>
-  </div>
-</body>
+  <body>
+    <section class="hero is-primary is-bold is-fullheight" style="align-items: center; justify-content: center;">
+      <div class="hero-body">
+        <div class="container" style="text-align: center;">
+          <h1 class="title is-large">
+            Lovr
+          </h1>
+          <h2 class="subtitle is-large">
+            Dating App
+          </h2>
+          <div class="container">
+            <div class="buttons is-centered">
+              <center><span class="button is-small is-primary is-inverted is-small" style="margin-right: 5px;">Login</span></center>
+              <center><span class="button is-small is-primary is-inverted is-small" style="margin-left: 5px;">Register</span></center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
 <% } %>
