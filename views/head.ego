@@ -15,6 +15,7 @@ func ProduceHead(w io.Writer) {
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/custom.css">
 
 <script defer src="http://localhost:8080/static/js/all.js"></script>
+<script src="http://localhost:8080/static/js/custom.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>

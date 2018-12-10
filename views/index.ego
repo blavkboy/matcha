@@ -21,9 +21,26 @@ func RenderIndex(w io.Writer) {
             Dating App
           </h2>
           <div class="container">
+            <div class="modal">
+              <div class="modal-background"></div>
+              <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Lovr Login</p>
+                <button class="delete" aria-label="close"></button>
+              </header>
+              <section class="modal-card-body">
+                <input class="input" id="log_username" type="text" placeholder="Username/Email">
+                <span></span>
+                <input class="input" id="log_password" type="password" placeholder="Password">
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button is-primary">Login</button>
+              </footer>
+            </div>
+          </div>
             <div class="buttons is-centered">
-              <center><span class="button is-small is-primary is-inverted is-small" style="margin-right: 5px;">Login</span></center>
-              <center><span class="button is-small is-primary is-inverted is-small" style="margin-left: 5px;">Register</span></center>
+              <center><span class="button is-small is-primary is-inverted is-small" style="margin-right: 5px;" id="login">Login</span></center>
+              <center><span class="button is-small is-primary is-inverted is-small" style="margin-left: 5px;" id="register">Register</span></center>
             </div>
           </div>
         </div>
