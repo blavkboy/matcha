@@ -27,6 +27,7 @@ type User struct {
 
 func NewUser(user *User) {
 	mlogger := mlogger.GetInstance()
+	//Either initialize the database or get an instance of it
 	err, client := database.InitDB()
 	if err != nil {
 		mlogger.Println("Error: ", err)
@@ -40,18 +41,24 @@ func NewUser(user *User) {
 		return
 	}
 	collection := client.Database("matcha").Collection("users")
-	res, err := collection.InsertOne(context.Background(), bson.M{
+	cur := collection.FindOne(ctx, bson.M{
 		"username": user.Username,
-		"fname":    user.Fname,
-		"lname":    user.Lname,
-		"email":    user.Email,
-		"password": user.Password,
 	})
-	if err != nil {
-		mlogger.Println("Error: ", err)
-		return
-	}
-	id := res.InsertedID
-	mlogger.Println("Insertion ID: ", id)
-	mlogger.Println("User: ", user)
+	mlogger.Println("Document: ", cur)
+	/*
+		res, err := collection.InsertOne(ctx, bson.M{
+			"username": user.Username,
+			"fname":    user.Fname,
+			"lname":    user.Lname,
+			"email":    user.Email,
+			"password": user.Password,
+		})
+		if err != nil {
+			mlogger.Println("Error: ", err)
+			return
+		}
+		id := res.InsertedID
+		mlogger.Println("Insertion ID: ", id)
+		mlogger.Println("User: ", user)
+	*/
 }

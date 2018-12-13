@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
@@ -32,6 +33,7 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 	json.NewDecoder(r.Body).Decode(&body)
 	mlogger.Println("Saving user")
 	models.NewUser(&body)
+	mlogger.Println(time.Now())
 	mlogger.Println(body)
 }
 

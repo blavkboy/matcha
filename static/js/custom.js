@@ -6,15 +6,34 @@ window.onload = function() {
   let modal = document.querySelectorAll(".modal");
   let reg_email = document.getElementById("reg_email");
   
-  reg_email.onchange = function() {
+  function varifyEmail(email) {
     //regular expression that will match most emails and tell the user if that account is valid
     var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    var found = reg_email.value.match(regex);
-    
-    if (reg_email.classList.contains("is-success") == true && found == null)
-      reg_email.classList.remove("is-success");
-    else if (reg_email.classList.contains("is-success") == false && found != null)
-      reg_email.classList.add("is-success");
+    var found = email.match(regex);
+    return (found);
+  }
+
+  function varifyUsername(username) {
+    //regular expression to varify if username is legit
+    var regex = /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/;
+    var found = username.match(regex);
+    return (found);
+  }
+
+  function varifyPassword(password) {
+    //check the length of the password
+    if (password.length < 8)
+      return (null);
+    var numReg = /\d/;
+    if (password.match(numReg) == null)
+      return (null);
+    var upCase = /[A-Z]/;
+    if (password.match(upCase) == null)
+      return (null);
+    var loCase = /[a-z]/;
+    if (password.match(loCase) == null)
+      return (null);
+    return (true);
   }
   
   login.onclick = function(){
@@ -31,5 +50,29 @@ window.onload = function() {
 
   close_register.onclick = function(){
     modal[1].classList.remove("is-active");
+  }
+  const xhr = new XMLHttpRequest();
+
+  xhr.onload = function() {
+    console.log(this.responseText);
+  }
+
+  let register_button = document.getElementById("register_button");
+  register_button.onclick = function() {
+    let username = document.getElementById("reg_username").value;
+    let email = document.getElementById("reg_email").value;
+    let password = document.getElementById("reg_password").value;
+    if (varifyEmail(email) && varifyUsername(username) && varifyPassword(password)) {
+      const url = location.protocol + "//" + location.host + "/users";
+      var user = JSON.stringify({
+        "username": username,
+        "email": email,
+        "password": password
+      });
+      console.log(url);
+      xhr.open("POST", url);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(user);
+    }
   }
 }

@@ -1,1 +1,5 @@
 Matcha matcha.go:16: Starting 'Matcha' dating service API
+Matcha routing.go:34: Saving user
+Matcha user.go:50: *mongo.DocumentResult &{ObjectIdHex("")     }
+Matcha routing.go:36: 2018-12-13 14:18:47.957287 +0200 SAST m=+18.845533854
+Matcha routing.go:37: {ObjectIdHex("") gmohlamo   g.mohlamonyane@gmail.com Password1}

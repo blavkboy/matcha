@@ -8,11 +8,11 @@ import (
 )
 
 var once sync.Once
+var connection *mongo.Client
 
 func InitDB() (error, *mongo.Client) {
 	mlogger := mlogger.GetInstance()
-	var err error
-	var connection *mongo.Client
+	var err error = nil
 	once.Do(func() {
 		client, err := mongo.NewClient("mongodb://localhost:27017")
 		connection = client
