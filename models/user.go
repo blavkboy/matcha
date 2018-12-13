@@ -1,11 +1,9 @@
 package models
 
 import (
-	"context"
-	"time"
-
 	"github.com/blavkboy/matcha/database"
 	"github.com/blavkboy/matcha/mlogger"
+	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -33,18 +31,28 @@ func NewUser(user *User) {
 		mlogger.Println("Error: ", err)
 		return
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
-	defer cancel()
-	err = client.Connect(ctx)
+	c := client.DB("matcha").C("users")
+	index := mgo.Index{
+		Key:        []string{"username", "email"},
+		Unique:     true,
+		DropDups:   true,
+		Background: true,
+		Sparse:     true,
+	}
+
+	err = c.EnsureIndex(index)
 	if err != nil {
 		mlogger.Println("Error: ", err)
+		panic(err)
 		return
 	}
-	collection := client.Database("matcha").Collection("users")
-	cur := collection.FindOne(ctx, bson.M{
-		"username": user.Username,
-	})
-	mlogger.Println("Document: ", cur)
+	mlogger.Println("Ensured Index")
+	err = c.Insert(&user)
+	if err != nil {
+		mlogger.Println("Error: ", err)
+		panic(err)
+	}
+	mlogger.Println("Inserting User")
 	/*
 		res, err := collection.InsertOne(ctx, bson.M{
 			"username": user.Username,

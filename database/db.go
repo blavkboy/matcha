@@ -1,27 +1,33 @@
 package database
 
 import (
+	"os"
 	"sync"
 
 	"github.com/blavkboy/matcha/mlogger"
-	"github.com/mongodb/mongo-go-driver/mongo"
+	mgo "gopkg.in/mgo.v2"
 )
 
-var once sync.Once
-var connection *mongo.Client
+//Decided to rewrite my whole approach to using the database
 
-func InitDB() (error, *mongo.Client) {
+var once sync.Once
+var session *mgo.Session
+
+func InitDB() (error, *mgo.Session) {
 	mlogger := mlogger.GetInstance()
+
 	var err error = nil
 	once.Do(func() {
-		client, err := mongo.NewClient("mongodb://localhost:27017")
-		connection = client
+		session, err = mgo.Dial("mongodb://localhost:27017")
 		if err != nil {
 			mlogger.Println("Error: ", err)
+			os.Exit(1)
 		}
+		session.SetMode(mgo.Monotonic, true)
 	})
 	if err != nil {
 		return err, nil
 	}
-	return nil, connection
+	mlogger.Println(session)
+	return nil, session
 }
