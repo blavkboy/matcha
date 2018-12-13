@@ -54,6 +54,9 @@ func RenderIndex(w io.Writer) {
                   <button class="button is-primary is-medium is-fullwidth" id="login_button">
                     Login
                   </button>
+                  <button class="button is-warning is-medium is-fullwidth" id="forgotPassword">
+                    Forgot Password?
+                  </button>
                 </p>
               </footer>
             </div>

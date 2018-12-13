@@ -1,7 +1,3 @@
-Matcha matcha.go:16: Starting 'Matcha' dating service API
-Matcha routing.go:34: Saving user
-Matcha db.go:31: &{{{0 0} 0 0 0 0} 0xc000105200 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000130700 60000000000 60000000000 test admin <nil> [] 4096 false}
-Matcha user.go:49: Ensured Index
-Matcha user.go:55: Inserting User
-Matcha routing.go:36: 2018-12-13 15:01:50.211406302 +0200 SAST m=+23.686241032
-Matcha routing.go:37: {ObjectIdHex("") gmohlamo   g.mohlamonyane@gmail.com Password1}
+Matcha matcha.go:19: 2018-12-13 23:46:49.94621376 +0200 SAST m=+0.009868086
+Matcha db.go:37: &{{{0 0} 0 0 0 0} 0xc00010a100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000112000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:26: Starting 'Matcha' dating service API

@@ -2,7 +2,10 @@ package main
 
 import (
 	"net/http"
+	"os"
+	"time"
 
+	"github.com/blavkboy/matcha/database"
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/routing"
 	"github.com/blavkboy/matcha/services/auth"
@@ -13,6 +16,13 @@ import (
 //In main we will handle all requests to the server
 func main() {
 	mlogger := mlogger.GetInstance()
+	mlogger.Println(time.Now())
+	err, conn := database.InitDB()
+	defer conn.Close()
+	if err != nil {
+		mlogger.Println("Error: ", err)
+		os.Exit(1)
+	}
 	mlogger.Println("Starting 'Matcha' dating service API")
 	r := mux.NewRouter()
 

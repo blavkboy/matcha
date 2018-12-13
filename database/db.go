@@ -13,6 +13,12 @@ import (
 var once sync.Once
 var session *mgo.Session
 
+//InitDB will perform singleton pattern initialization on the
+//database and return a session connection to the database.
+//Recommended to only in the main function so you are able to
+//close the session and use copies of the session with the
+//defer session.Close() method call ensuring that the connection is
+//properly terminated when the program closes.
 func InitDB() (error, *mgo.Session) {
 	mlogger := mlogger.GetInstance()
 
@@ -30,4 +36,8 @@ func InitDB() (error, *mgo.Session) {
 	}
 	mlogger.Println(session)
 	return nil, session
+}
+
+func GetInstance() *mgo.Session {
+	return session.Copy()
 }

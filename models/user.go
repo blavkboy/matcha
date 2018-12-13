@@ -23,14 +23,15 @@ type User struct {
 	Password string        `json:"password" bson:"password"`
 }
 
-func NewUser(user *User) {
+//NewUser iss effectively how a new user is registered onto the
+//system with their username, email and password. All other details
+//are only necessary when the user model design is decided and users
+//can provide more information about themselves.
+func NewUser(user *User) *User {
 	mlogger := mlogger.GetInstance()
 	//Either initialize the database or get an instance of it
-	err, client := database.InitDB()
-	if err != nil {
-		mlogger.Println("Error: ", err)
-		return
-	}
+	client := database.GetInstance()
+	defer client.Close()
 	c := client.DB("matcha").C("users")
 	index := mgo.Index{
 		Key:        []string{"username", "email"},
@@ -40,33 +41,39 @@ func NewUser(user *User) {
 		Sparse:     true,
 	}
 
-	err = c.EnsureIndex(index)
+	err := c.EnsureIndex(index)
 	if err != nil {
 		mlogger.Println("Error: ", err)
 		panic(err)
-		return
+		return nil
 	}
 	mlogger.Println("Ensured Index")
+	user.ID = bson.NewObjectId()
 	err = c.Insert(&user)
 	if err != nil {
 		mlogger.Println("Error: ", err)
 		panic(err)
 	}
 	mlogger.Println("Inserting User")
-	/*
-		res, err := collection.InsertOne(ctx, bson.M{
-			"username": user.Username,
-			"fname":    user.Fname,
-			"lname":    user.Lname,
-			"email":    user.Email,
-			"password": user.Password,
-		})
-		if err != nil {
-			mlogger.Println("Error: ", err)
-			return
-		}
-		id := res.InsertedID
-		mlogger.Println("Insertion ID: ", id)
-		mlogger.Println("User: ", user)
-	*/
+	user = FindUser("username", user.Username)
+	return user
+}
+
+//FindUser will return a User struct of the user being queried
+//based on key value pair of the caller's choosing. Still needs
+//to be tested extensively.
+func FindUser(key string, value string) *User {
+	body := new(User)
+	mlogger := mlogger.GetInstance()
+	client := database.GetInstance()
+	defer client.Close()
+	c := client.DB("matcha").C("users")
+	err := c.Find(bson.M{
+		key: value,
+	}).One(body)
+	if err != nil {
+		mlogger.Println("Error: ", err)
+		return nil
+	}
+	return (body)
 }

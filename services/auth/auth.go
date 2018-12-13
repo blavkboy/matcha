@@ -27,7 +27,6 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 				"created": time.Now(),
 				"exp":     time.Now().AddDate(0, 0, 7),
 			})
-			models.Users = append(models.Users, user)
 			// Sign and get the complete encoded token as a string using the secret
 			tokenString, err := token.SignedString(mySigningKey)
 			if err != nil {

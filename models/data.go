@@ -5,6 +5,3 @@ package models
 type Data struct {
 	Data []User
 }
-
-//Users will be our array to keep users in
-var Users []User
