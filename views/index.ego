@@ -20,7 +20,7 @@ func RenderIndex(w io.Writer) {
           <h2 class="subtitle is-large">
             Dating App
           </h2>
-          <div class="container">
+          <div class="container" id="landing_modals">
             <div class="modal" id="login_modal">
               <div class="modal-card animated jackInTheBox" style="width: minmax(250px, 800px); padding: 5%;">
               <header class="modal-card-head">

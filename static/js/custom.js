@@ -62,7 +62,22 @@ window.onload = function() {
   const xhr = new XMLHttpRequest();
 
   xhr.onload = function() {
-    console.log(this.responseText);
+    if("Fail" == this.responseText) {
+      let div = document.createElement("div");
+      div.setAttribute("style", "width: 20%; margin-left: 40%; margin-right: 40%; margin-top: 10%;");
+      div.classList.add("notification");
+      div.classList.add("is-danger");
+      let btn = document.createElement("button");
+      btn.classList.add("delete");
+      div.appendChild(btn);
+      let msg = document.createTextNode("Registration Failed");
+      div.appendChild(msg);
+      let container = document.querySelector(".container");
+      container.appendChild(div);
+      btn.onclick = function() {
+        div.parentNode.removeChild(div);
+      }
+    }
   }
 
   let register_button = document.getElementById("register_button");

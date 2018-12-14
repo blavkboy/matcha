@@ -26,7 +26,6 @@ func HandleRoot(w http.ResponseWriter, r *http.Request) {
 //we can abstract some of it to make the login method and let the user
 //keep his/her state using the token
 func HandleUser(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	mlogger := mlogger.GetInstance()
 	//we process get request and return either the selected user or
 	//all the users
@@ -50,6 +49,7 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Fail")
 		return
 	}
+	w.Header().Set("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(ret)
 	if err != nil {
 		fmt.Fprintf(w, "Error: %s", err)
