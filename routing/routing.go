@@ -34,8 +34,23 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 	var body models.User
 	json.NewDecoder(r.Body).Decode(&body)
 	mlogger.Println("Saving user")
-	models.NewUser(&body)
-	err := json.NewEncoder(w).Encode(body)
+	newBody := models.FindUser("username", body.Username)
+	if newBody != nil {
+		fmt.Fprintf(w, "Fail")
+		return
+	}
+	newBody = &models.User{}
+	newBody = models.FindUser("email", body.Email)
+	if newBody != nil {
+		fmt.Fprintf(w, "Fail")
+		return
+	}
+	ret := models.NewUser(&body)
+	if ret == nil {
+		fmt.Fprintf(w, "Fail")
+		return
+	}
+	err := json.NewEncoder(w).Encode(ret)
 	if err != nil {
 		fmt.Fprintf(w, "Error: %s", err)
 		mlogger.Println("Error: ", err)

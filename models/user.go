@@ -45,17 +45,17 @@ func NewUser(user *User) *User {
 	if err != nil {
 		mlogger.Println("Error: ", err)
 		panic(err)
-		return nil
 	}
 	mlogger.Println("Ensured Index")
 	user.ID = bson.NewObjectId()
 	err = c.Insert(&user)
 	if err != nil {
 		mlogger.Println("Error: ", err)
-		panic(err)
+		return nil
 	}
 	mlogger.Println("Inserting User")
 	user = FindUser("username", user.Username)
+	user.Password = ""
 	return user
 }
 

@@ -1,3 +1,20 @@
-Matcha matcha.go:19: 2018-12-13 23:46:49.94621376 +0200 SAST m=+0.009868086
-Matcha db.go:37: &{{{0 0} 0 0 0 0} 0xc00010a100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000112000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:19: 2018-12-14 16:36:07.108473 +0200 SAST m=+0.001458552
+Matcha db.go:37: &{{{0 0} 0 0 0 0} 0xc00010c000 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000110000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:26: Starting 'Matcha' dating service API
+Matcha routing.go:36: Saving user
+Matcha routing.go:36: Saving user
+Matcha user.go:75: Error:  not found
+Matcha user.go:75: Error:  not found
+Matcha user.go:49: Ensured Index
+Matcha user.go:56: Inserting User
+Matcha routing.go:59: 2018-12-14 16:37:07.188969 +0200 SAST m=+60.082738675
+Matcha routing.go:60: {ObjectIdHex("5c13c013f4095a7d9e298cb9") superMan   gmohlamo@student.wethinkcode.co.za Password1}
+Matcha routing.go:36: Saving user
+Matcha user.go:75: Error:  not found
+Matcha routing.go:36: Saving user
+Matcha user.go:75: Error:  not found
+Matcha user.go:75: Error:  not found
+Matcha user.go:49: Ensured Index
+Matcha user.go:56: Inserting User
+Matcha routing.go:59: 2018-12-14 16:38:10.059586 +0200 SAST m=+122.954176974
+Matcha routing.go:60: {ObjectIdHex("5c13c052f4095a7d9e298cba") gladi8r   corny@mailinator.com Password1}
