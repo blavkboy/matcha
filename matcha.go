@@ -28,6 +28,8 @@ func main() {
 
 	//Register users to the users collectioon in the matcha database
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
+	r.HandleFunc("/users/login", auth.NewToken(routing.HandleLogin)).Methods("POST")
+	r.HandleFunc("/users/check", auth.ConfirmUser(routing.HandleCheck)).Methods("GET")
 	r.HandleFunc("/users", routing.HandleUser).Methods("POST")
 	r.HandleFunc("/users", auth.NewToken(routing.HandleUsers)).Methods("GET")
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

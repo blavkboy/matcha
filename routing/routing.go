@@ -22,6 +22,10 @@ func HandleRoot(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func HandleLogin(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "You got herer though...")
+}
+
 //HandleUser will handle requests to get the users from the browser.
 //we can abstract some of it to make the login method and let the user
 //keep his/her state using the token
@@ -33,15 +37,15 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 	var body models.User
 	json.NewDecoder(r.Body).Decode(&body)
 	mlogger.Println("Saving user")
-	newBody := models.FindUser("username", body.Username)
+	newBody := models.FindUser("email", body.Email)
 	if newBody != nil {
-		fmt.Fprintf(w, "Fail")
+		fmt.Fprintf(w, "Fail email")
 		return
 	}
 	newBody = &models.User{}
-	newBody = models.FindUser("email", body.Email)
+	newBody = models.FindUser("username", body.Username)
 	if newBody != nil {
-		fmt.Fprintf(w, "Fail")
+		fmt.Fprintf(w, "Fail username")
 		return
 	}
 	ret := models.NewUser(&body)
@@ -62,4 +66,8 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 
 func HandleUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+}
+
+func HandleCheck(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Something")
 }

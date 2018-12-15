@@ -32,7 +32,7 @@ func RenderIndex(w io.Writer) {
                 <div class="field">
                   <label class="label">Username</label>
                   <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" placeholder="Enter username" value="">
+                    <input class="input" type="text" placeholder="Enter username" id="login_username" value="">
                     <span class="icon is-small is-left">
                       <i class="fas fa-user"></i>
                     </span>
@@ -42,7 +42,7 @@ func RenderIndex(w io.Writer) {
                 <div class="field">
                   <label class="label">Password</label>
                   <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="password" placeholder="Password" value="">
+                    <input class="input" id="login_password" type="password" placeholder="Password" value="">
                     <span class="icon is-small is-left">
                       <i class="fas fa-lock"></i>
                     </span>

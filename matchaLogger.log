@@ -1,14 +1,6 @@
-Matcha matcha.go:19: 2018-12-14 18:16:57.25916 +0200 SAST m=+0.001367483
-Matcha db.go:37: &{{{0 0} 0 0 0 0} 0xc0000f0000 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc0000f2000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:19: 2018-12-15 07:21:28.130400026 +0200 SAST m=+0.002234293
+Matcha db.go:37: &{{{0 0} 0 0 0 0} 0xc00010a100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000114000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:26: Starting 'Matcha' dating service API
-Matcha routing.go:35: Saving user
-Matcha routing.go:35: Saving user
-Matcha routing.go:35: Saving user
-Matcha user.go:75: Error:  not found
-Matcha routing.go:35: Saving user
-Matcha user.go:75: Error:  not found
-Matcha user.go:75: Error:  not found
-Matcha user.go:49: Ensured Index
-Matcha user.go:56: Inserting User
-Matcha routing.go:59: 2018-12-14 18:18:49.979664 +0200 SAST m=+112.723518040
-Matcha routing.go:60: {ObjectIdHex("5c13d7e9f4095a648d3eb989") helper   mom@mailinator.com Passw1asdasda}
+Matcha auth.go:73: map[email: password: id:5c148ed5b3ddb1486252948b username: fname: lname:]
+Matcha auth.go:73: map[lname: email: password: id:5c148ed5b3ddb1486252948b username: fname:]
+Matcha auth.go:73: map[id:5c148ed5b3ddb1486252948b username: fname: lname: email: password:]

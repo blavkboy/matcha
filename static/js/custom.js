@@ -61,21 +61,22 @@ window.onload = function() {
   }
   const xhr = new XMLHttpRequest();
 
-  xhr.onload = function() {
-    if("Fail" == this.responseText) {
-      let div = document.createElement("div");
-      div.setAttribute("style", "width: 20%; margin-left: 40%; margin-right: 40%; margin-top: 10%;");
-      div.classList.add("notification");
-      div.classList.add("is-danger");
-      let btn = document.createElement("button");
-      btn.classList.add("delete");
-      div.appendChild(btn);
-      let msg = document.createTextNode("Registration Failed");
-      div.appendChild(msg);
-      let container = document.querySelector(".container");
-      container.appendChild(div);
-      btn.onclick = function() {
-        div.parentNode.removeChild(div);
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      let username = document.getElementById("reg_username");
+      let email = document.getElementById("reg_email");
+      let response = this.responseText.split(" ");
+      if("Fail" == response[0]) {
+        if (response[1] == "email")
+          email.classList.add("is-danger");
+        else
+          username.classList.add("is-danger");
+      } else {
+        email.classList.remove("is-danger");
+        email.value = "";
+        username.classList.remove("is-danger");
+        username.value = "";
+        closeReg()
       }
     }
   }
@@ -92,7 +93,6 @@ window.onload = function() {
         "email": email,
         "password": password
       });
-      console.log(url);
       xhr.open("POST", url);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send(user);
@@ -101,11 +101,8 @@ window.onload = function() {
       pw.value = "";
       let mail = document.getElementById("reg_email");
       mail.classList.remove("is-danger");
-      mail.value = "";
       let uname = document.getElementById("reg_username");
       uname.classList.remove("is-danger");
-      uname.value = "";
-      closeReg();
     }
     
     if (varifyPassword(password) == null) {
@@ -131,5 +128,33 @@ window.onload = function() {
       let uname = document.getElementById("reg_username");
       uname.classList.remove("is-danger");
     }
+  }
+  const request = new XMLHttpRequest();
+  let loginBtn = document.getElementById("login_button");
+  request.onreadystatechange = function() {
+    /*if (this.readyState == 4 && this.status == 200) {
+      var obj = JSON.parse(this.responseText);
+      if (obj["success"] == true) {
+        console.log("signed in");
+      } else {
+        console.log("login failed");
+      }
+    }*/
+    console.log(this.responseText);
+  }
+  loginBtn.onclick = function() {
+    const url = location.protocol + "//" + location.host + "/users/login";
+    let login_password = document.getElementById("login_password");
+    let login_username = document.getElementById("login_username");
+
+
+    let user = JSON.stringify({
+      "username": login_username.value,
+      "password": login_password.value
+    });
+    request.open("POST", url);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(user);
+    console.log(user);
   }
 }
