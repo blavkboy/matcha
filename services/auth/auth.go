@@ -34,8 +34,8 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 			fmt.Println("compare pw: ", compare.Password)
 			token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 				"user":    compare,
-				"created": time.Now(),
-				"exp":     time.Now().AddDate(0, 0, 7),
+				"created": time.Now().Unix(),
+				"exp":     time.Now().AddDate(0, 0, 7).Unix(),
 			})
 			// Sign and get the complete encoded token as a string using the secret
 			tokenString, err := token.SignedString(mySigningKey)
@@ -48,12 +48,15 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 			exp := time.Now().Add(time.Hour * (24 * 7))
 			cookie := http.Cookie{Name: authToken, Value: tokenString, Expires: exp}
 			http.SetCookie(w, &cookie)
+			w.Header().Set("Content-Type", "application/json")
+			w.Write([]byte("{\"success\": true, \"token\": " + tokenString + "}"))
 		}
 	}
 }
 
 func ConfirmUser(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("WWW-Authenticate", `Basic realm="Restricted"`)
 		logger := mlogger.GetInstance()
 		cookie, err := r.Cookie(authToken)
 		if err != nil {

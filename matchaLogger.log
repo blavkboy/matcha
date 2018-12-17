@@ -1,6 +1,4 @@
-Matcha matcha.go:19: 2018-12-15 07:21:28.130400026 +0200 SAST m=+0.002234293
-Matcha db.go:37: &{{{0 0} 0 0 0 0} 0xc00010a100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000114000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:19: 2018-12-16 21:34:42.534824551 +0200 SAST m=+0.001743589
+Matcha db.go:37: &{{{0 0} 0 0 0 0} 0xc00010c100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000116000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:26: Starting 'Matcha' dating service API
-Matcha auth.go:73: map[email: password: id:5c148ed5b3ddb1486252948b username: fname: lname:]
-Matcha auth.go:73: map[lname: email: password: id:5c148ed5b3ddb1486252948b username: fname:]
-Matcha auth.go:73: map[id:5c148ed5b3ddb1486252948b username: fname: lname: email: password:]
+Matcha auth.go:76: map[id:5c13e262b3ddb10c4b41d7fc username:gmohlamo fname: lname: email:g.mohlamonyane@gmail.com password:Password1]
