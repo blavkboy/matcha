@@ -129,6 +129,7 @@ window.onload = function() {
       uname.classList.remove("is-danger");
     }
   }
+  
   const request = new XMLHttpRequest();
   let loginBtn = document.getElementById("login_button");
   request.onreadystatechange = function() {

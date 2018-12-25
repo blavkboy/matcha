@@ -1,4 +1,3 @@
-Matcha matcha.go:19: 2018-12-16 21:34:42.534824551 +0200 SAST m=+0.001743589
+Matcha matcha.go:19: 2018-12-25 17:17:03.921677754 +0200 SAST m=+0.001712230
 Matcha db.go:37: &{{{0 0} 0 0 0 0} 0xc00010c100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000116000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:26: Starting 'Matcha' dating service API
-Matcha auth.go:76: map[id:5c13e262b3ddb10c4b41d7fc username:gmohlamo fname: lname: email:g.mohlamonyane@gmail.com password:Password1]
