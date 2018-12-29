@@ -11,6 +11,7 @@ import (
 	"github.com/blavkboy/matcha/models"
 	"github.com/blavkboy/matcha/routing"
 	jwt "github.com/dgrijalva/jwt-go"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var mySigningKey = []byte("The `jig is up")
@@ -19,19 +20,24 @@ var mySigningKey = []byte("The `jig is up")
 func NewToken(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if strings.Compare(r.Method, "POST") == 0 {
+			w.Header().Set("Content-Type", "application/json")
 			var user models.User
 			var compare *models.User
 			json.NewDecoder(r.Body).Decode(&user)
-			fmt.Println("Recieved data: ", user)
 			// Create a new token object, specifying signing method and the claims
 			// you would like it to contain.
 			compare = models.FindUser("username", user.Username)
-			if strings.Compare(compare.Password, user.Password) != 0 {
+			pass1 := []byte(compare.Password)
+			pass2 := []byte(user.Password)
+			if compare == nil {
+				w.Write([]byte("{\"success\": false}"))
+				return
+			} else if bcrypt.CompareHashAndPassword(pass1, pass2) != nil {
+				w.Write([]byte("{\"success\": false}"))
 				routing.HandleRoot(w, r)
 				next(w, r)
 			}
-			fmt.Println("user pw: ", user.Password)
-			fmt.Println("compare pw: ", compare.Password)
+			fmt.Println(bcrypt.CompareHashAndPassword(pass1, pass2))
 			token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 				"user":    compare,
 				"created": time.Now().Unix(),
@@ -42,14 +48,14 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 			if err != nil {
 				logger := mlogger.GetInstance()
 				logger.Println("Error: ", err)
+				w.Write([]byte("{\"success\": false}"))
 				return
 			}
 
 			exp := time.Now().Add(time.Hour * (24 * 7))
 			cookie := http.Cookie{Name: authToken, Value: tokenString, Expires: exp}
 			http.SetCookie(w, &cookie)
-			w.Header().Set("Content-Type", "application/json")
-			w.Write([]byte("{\"success\": true, \"token\": " + tokenString + "}"))
+			w.Write([]byte("{\"success\": true, \"token\": " + "\"" + tokenString + "\"" + "}"))
 		}
 	}
 }

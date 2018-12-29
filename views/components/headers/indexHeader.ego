@@ -1,5 +1,5 @@
 <%
-package components
+package headers
 
 func IndexStyles(w io.Writer) {
 %>
@@ -8,5 +8,5 @@ func IndexStyles(w io.Writer) {
 
 func IndexScripts(w io.Writer) {
 %>
-<script src="http://localhost:8080/static/js/custom.js"></script>
+<script src="http://localhost:8080/static/js/index.js"></script>
 <% } %>

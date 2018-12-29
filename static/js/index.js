@@ -133,15 +133,18 @@ window.onload = function() {
   const request = new XMLHttpRequest();
   let loginBtn = document.getElementById("login_button");
   request.onreadystatechange = function() {
-    /*if (this.readyState == 4 && this.status == 200) {
-      var obj = JSON.parse(this.responseText);
+    if (this.readyState == 4 && this.status == 200) {
+      let loginResponse = this.responseText;
+      var obj = JSON.parse(loginResponse);
       if (obj["success"] == true) {
         console.log("signed in");
+        localStorage["token"] = obj["token"];
+        location.assign("http://localhost:8080/home")
       } else {
         console.log("login failed");
       }
-    }*/
-    console.log(this.responseText);
+    }
+    //console.log(this.responseText);
   }
   loginBtn.onclick = function() {
     const url = location.protocol + "//" + location.host + "/users/login";
@@ -156,6 +159,5 @@ window.onload = function() {
     request.open("POST", url);
     request.setRequestHeader("Content-Type", "application/json");
     request.send(user);
-    console.log(user);
   }
 }

@@ -1,13 +1,16 @@
 <%
 package views
 
-import "github.com/blavkboy/matcha/views/components"
+import (
+    "github.com/blavkboy/matcha/views/components"
+    "github.com/blavkboy/matcha/views/components/headers"
+)
 
 func RenderIndex(w io.Writer) {
 %>
 <head>
 <%
-produceHead(w, components.IndexStyles, components.IndexScripts)
+produceHead(w, headers.IndexStyles, headers.IndexScripts)
 %>
 </head>
 <body>

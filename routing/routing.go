@@ -4,26 +4,23 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strings"
 	"time"
 
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
+	"github.com/blavkboy/matcha/views"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type middleWare func(next http.HandlerFunc) http.HandlerFunc
 
 //HandleRoot will handle calls to the root of the domain
 func HandleRoot(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	sampleData := models.Data{}
-	if strings.Compare(r.Method, "GET") == 0 {
-		json.NewEncoder(w).Encode(sampleData)
-	}
+	views.RenderIndex(w)
 }
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "You got herer though...")
+	//something todo later
 }
 
 //HandleUser will handle requests to get the users from the browser.
@@ -36,7 +33,13 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 	//Todo: refine search capabilities and make this more efficient
 	var body models.User
 	json.NewDecoder(r.Body).Decode(&body)
-	mlogger.Println("Saving user")
+	pass, err := bcrypt.GenerateFromPassword([]byte(body.Password), models.Cost)
+	if err != nil {
+		fmt.Println("Error hashing password: ", err.Error())
+		return
+	}
+	body.Password = string(pass)
+	mlogger.Println("Saving user with password: ", string(body.Password))
 	newBody := models.FindUser("email", body.Email)
 	if newBody != nil {
 		fmt.Fprintf(w, "Fail email")
@@ -54,7 +57,7 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
-	err := json.NewEncoder(w).Encode(ret)
+	err = json.NewEncoder(w).Encode(ret)
 	if err != nil {
 		fmt.Fprintf(w, "Error: %s", err)
 		mlogger.Println("Error: ", err)
@@ -70,4 +73,8 @@ func HandleUsers(w http.ResponseWriter, r *http.Request) {
 
 func HandleCheck(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Something")
+}
+
+func HandleHome(w http.ResponseWriter, r *http.Request) {
+	views.RenderHome(w)
 }

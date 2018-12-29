@@ -9,7 +9,6 @@ import (
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/routing"
 	"github.com/blavkboy/matcha/services/auth"
-	"github.com/blavkboy/matcha/views"
 	"github.com/gorilla/mux"
 )
 
@@ -32,8 +31,7 @@ func main() {
 	r.HandleFunc("/users/check", auth.ConfirmUser(routing.HandleCheck)).Methods("GET")
 	r.HandleFunc("/users", routing.HandleUser).Methods("POST")
 	r.HandleFunc("/users", auth.NewToken(routing.HandleUsers)).Methods("GET")
-	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		views.RenderIndex(w)
-	})
+	r.HandleFunc("/home", routing.HandleHome).Methods("GET")
+	r.HandleFunc("/", routing.HandleRoot).Methods("GET")
 	http.ListenAndServe(":8080", r)
 }

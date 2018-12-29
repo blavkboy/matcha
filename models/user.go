@@ -23,6 +23,9 @@ type User struct {
 	Password string        `json:"password" bson:"password"`
 }
 
+//constant for the cost
+var Cost int = 6
+
 //NewUser iss effectively how a new user is registered onto the
 //system with their username, email and password. All other details
 //are only necessary when the user model design is decided and users
@@ -55,7 +58,6 @@ func NewUser(user *User) *User {
 	}
 	mlogger.Println("Inserting User")
 	user = FindUser("username", user.Username)
-	user.Password = ""
 	return user
 }
 
