@@ -76,5 +76,6 @@ func HandleCheck(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Auth header: ", r.Header.Get("Authentication"))
 	views.RenderHome(w)
 }

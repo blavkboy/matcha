@@ -18,6 +18,7 @@ var mySigningKey = []byte("The `jig is up")
 
 //NewToken produces a new token
 func NewToken(next http.HandlerFunc) http.HandlerFunc {
+	logger := mlogger.GetInstance()
 	return func(w http.ResponseWriter, r *http.Request) {
 		if strings.Compare(r.Method, "POST") == 0 {
 			w.Header().Set("Content-Type", "application/json")
@@ -37,7 +38,7 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 				routing.HandleRoot(w, r)
 				next(w, r)
 			}
-			fmt.Println(bcrypt.CompareHashAndPassword(pass1, pass2))
+			logger.Println("Password match for user: ", bcrypt.CompareHashAndPassword(pass1, pass2) == nil)
 			token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 				"user":    compare,
 				"created": time.Now().Unix(),
@@ -46,7 +47,6 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 			// Sign and get the complete encoded token as a string using the secret
 			tokenString, err := token.SignedString(mySigningKey)
 			if err != nil {
-				logger := mlogger.GetInstance()
 				logger.Println("Error: ", err)
 				w.Write([]byte("{\"success\": false}"))
 				return

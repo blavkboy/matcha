@@ -11,19 +11,14 @@ produceHead(w, headers.HomeStyles, headers.HomeScripts)
 %>
 </head>
 <body>
-<div class="tile is-ancestor">
-  <div class="tile is-parent">
-    <article class="tile is-child box">
-      <p class="title">Main page first tile</p>
-      <p class="subtitle">Made using Bulma</p>
-    </article>
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <nav class="panel">
+        <p class="panel-heading">
+          Lovr things
+        </p>
+      </nav>
+    </div>
   </div>
-  <div class="tile is-parent is-9">
-    <article class="title is-child box">
-      <p class="title">Nigga what????</p>
-      <p class="subtitle">Say that shit again</p>
-    </article>
-  </div>
-</div>
 </body>
 <% } %>

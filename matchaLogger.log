@@ -1,3 +1,4 @@
-Matcha matcha.go:18: 2018-12-27 22:26:29.614781893 +0200 SAST m=+0.001879430
-Matcha db.go:37: &{{{0 0} 0 0 0 0} 0xc0000f8100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc0000fe000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:18: 2018-12-29 20:45:20.931598352 +0200 SAST m=+0.001728503
+Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc00010c100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000116000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:25: Starting 'Matcha' dating service API
+Matcha auth.go:41: Password match for user:  true

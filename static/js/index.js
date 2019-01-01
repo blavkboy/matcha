@@ -137,8 +137,9 @@ window.onload = function() {
       let loginResponse = this.responseText;
       var obj = JSON.parse(loginResponse);
       if (obj["success"] == true) {
-        console.log("signed in");
         localStorage["token"] = obj["token"];
+        let myHeader = new Headers();
+        myHeader.append("Authentication", obj["token"]);
         location.assign("http://localhost:8080/home")
       } else {
         console.log("login failed");

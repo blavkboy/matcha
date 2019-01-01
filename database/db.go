@@ -34,7 +34,7 @@ func InitDB() (error, *mgo.Session) {
 	if err != nil {
 		return err, nil
 	}
-	mlogger.Println(session)
+	mlogger.Println("mongodb session struct: ", session)
 	return nil, session
 }
 

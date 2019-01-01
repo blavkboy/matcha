@@ -21,8 +21,8 @@ func RenderHome(w io.Writer) {
 	produceHead(w, headers.HomeStyles, headers.HomeScripts)
 
 //line views/home.ego:12
-	_, _ = io.WriteString(w, "\n</head>\n<body>\n<div class=\"tile is-ancestor\">\n  <div class=\"tile is-parent\">\n    <article class=\"tile is-child box\">\n      <p class=\"title\">Main page first tile</p>\n      <p class=\"subtitle\">Made using Bulma</p>\n    </article>\n  </div>\n  <div class=\"tile is-parent is-9\">\n    <article class=\"title is-child box\">\n      <p class=\"title\">Nigga what????</p>\n      <p class=\"subtitle\">Say that shit again</p>\n    </article>\n  </div>\n</div>\n</body>\n")
-//line views/home.ego:29
+	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      <nav class=\"panel\">\n        <p class=\"panel-heading\">\n          Lovr things\n        </p>\n      </nav>\n    </div>\n  </div>\n</body>\n")
+//line views/home.ego:24
 }
 
 var _ fmt.Stringer
