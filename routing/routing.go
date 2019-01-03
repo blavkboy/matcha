@@ -8,6 +8,7 @@ import (
 
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
+	"github.com/blavkboy/matcha/services/auth"
 	"github.com/blavkboy/matcha/views"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -76,6 +77,5 @@ func HandleCheck(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Auth header: ", r.Header.Get("Authentication"))
-	views.RenderHome(w)
+	views.RenderHome(w, auth.GetCurrentUser(r))
 }

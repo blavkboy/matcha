@@ -9,7 +9,6 @@ import (
 
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
-	"github.com/blavkboy/matcha/routing"
 	jwt "github.com/dgrijalva/jwt-go"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -35,14 +34,15 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 				return
 			} else if bcrypt.CompareHashAndPassword(pass1, pass2) != nil {
 				w.Write([]byte("{\"success\": false}"))
-				routing.HandleRoot(w, r)
 				next(w, r)
+				return
 			}
 			logger.Println("Password match for user: ", bcrypt.CompareHashAndPassword(pass1, pass2) == nil)
 			token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-				"user":    compare,
-				"created": time.Now().Unix(),
-				"exp":     time.Now().AddDate(0, 0, 7).Unix(),
+				"username": compare.Username,
+				"email":    compare.Email,
+				"created":  time.Now().Unix(),
+				"exp":      time.Now().AddDate(0, 0, 7).Unix(),
 			})
 			// Sign and get the complete encoded token as a string using the secret
 			tokenString, err := token.SignedString(mySigningKey)
@@ -87,6 +87,31 @@ func ConfirmUser(next http.HandlerFunc) http.HandlerFunc {
 		}
 		next(w, r)
 	}
+}
+
+func GetCurrentUser(r *http.Request) *models.User {
+	cookie, err := r.Cookie(authToken)
+	logger := mlogger.GetInstance()
+	if err != nil {
+		logger.Println("Error getting current User: ", err)
+		return &models.User{Username: "Guest"}
+	}
+	tokenString := cookie.Value
+	fmt.Println("token string: ", tokenString)
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			logger.Println("Error: Unexpected signing method. ", token.Header["alg"])
+			return nil, fmt.Errorf("Error: Unexpected signing method: %v", token.Header["alg"])
+		}
+
+		return mySigningKey, nil
+	})
+	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+		user := models.FindUser("username", claims["username"].(string))
+		fmt.Println(user)
+		return user
+	}
+	return &models.User{Username: "Guest"}
 }
 
 func failedAuth(w http.ResponseWriter, r *http.Request) {

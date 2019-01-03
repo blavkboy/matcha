@@ -140,6 +140,7 @@ window.onload = function() {
         localStorage["token"] = obj["token"];
         let myHeader = new Headers();
         myHeader.append("Authentication", obj["token"]);
+        document.cookie = "AuthToken17286983217313=" + obj["token"];
         location.assign("http://localhost:8080/home")
       } else {
         console.log("login failed");

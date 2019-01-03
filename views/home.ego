@@ -2,8 +2,9 @@
 package views
 
 import "github.com/blavkboy/matcha/views/components/headers"
+import "github.com/blavkboy/matcha/models"
 
-func RenderHome(w io.Writer) {
+func RenderHome(w io.Writer, u *models.User) {
 %>
 <head>
 <%
@@ -15,7 +16,7 @@ produceHead(w, headers.HomeStyles, headers.HomeScripts)
     <div class="column is-one-quarter">
       <nav class="panel">
         <p class="panel-heading">
-          Lovr things
+          <% fmt.Fprint(w, u.Username) %>
         </p>
       </nav>
     </div>

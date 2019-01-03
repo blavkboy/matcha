@@ -11,18 +11,23 @@ import "io"
 import "context"
 
 import "github.com/blavkboy/matcha/views/components/headers"
+import "github.com/blavkboy/matcha/models"
 
-func RenderHome(w io.Writer) {
+func RenderHome(w io.Writer, u *models.User) {
 
-//line views/home.ego:8
-	_, _ = io.WriteString(w, "\n<head>\n")
 //line views/home.ego:9
+	_, _ = io.WriteString(w, "\n<head>\n")
+//line views/home.ego:10
 
 	produceHead(w, headers.HomeStyles, headers.HomeScripts)
 
-//line views/home.ego:12
-	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      <nav class=\"panel\">\n        <p class=\"panel-heading\">\n          Lovr things\n        </p>\n      </nav>\n    </div>\n  </div>\n</body>\n")
-//line views/home.ego:24
+//line views/home.ego:13
+	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      <nav class=\"panel\">\n        <p class=\"panel-heading\">\n          ")
+//line views/home.ego:19
+	fmt.Fprint(w, u.Username)
+//line views/home.ego:20
+	_, _ = io.WriteString(w, "\n        </p>\n      </nav>\n    </div>\n  </div>\n</body>\n")
+//line views/home.ego:25
 }
 
 var _ fmt.Stringer
