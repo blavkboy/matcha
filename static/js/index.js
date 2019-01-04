@@ -1,4 +1,5 @@
 window.onload = function() {
+  let times = 0;
   let userCoords = new Array;
   let login = document.getElementById("login");
   let register = document.getElementById("register");
@@ -11,15 +12,27 @@ window.onload = function() {
   forgotPassword.onclick = function() {
     console.log("request password reset");
   }
+  function getIp() {
+    fetch('https://ipinfo.io/json').then(function(response){
+      return response.json()
+    }).then(function(myJson){
+      userCoords = myJson["loc"].split(",").reverse();
+      userCoords[0] = Number(userCoords[0]);
+      userCoords[1] = Number(userCoords[1]);
+    });
+  }
   function getPosition(position) {
     userCoords.push(position.coords.longitude, position.coords.latitude);
     return userCoords;
   }
   function getLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getPosition);
+      navigator.geolocation.getCurrentPosition(getPosition, function(error) {
+        getIp();
+      });
       return true
     } else {
+      getIp();
       return false
     }
   }
@@ -58,7 +71,10 @@ window.onload = function() {
   }
 
   register.onclick = function(){
-    getLocation();
+    if (times == 0) {
+      getLocation();
+      times = times + 1;
+    }
     modal[1].classList.add("is-active");
   }
   
