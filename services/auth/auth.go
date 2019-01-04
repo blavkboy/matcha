@@ -108,7 +108,6 @@ func GetCurrentUser(r *http.Request) *models.User {
 	})
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		user := models.FindUser("username", claims["username"].(string))
-		fmt.Println(user)
 		return user
 	}
 	return &models.User{Username: "Guest"}

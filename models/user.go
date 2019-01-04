@@ -61,10 +61,28 @@ func NewUser(user *User) *User {
 	return user
 }
 
+func UpdateUser(updatedUser *User) *User {
+	logger := mlogger.GetInstance()
+	var orig User
+	user := FindUser("id", updatedUser.ID)
+	client := database.GetInstance()
+	c := client.DB("matcha").C("users")
+	err := c.Find(bson.M{
+		"_id": user.ID,
+	}).One(orig)
+	if err != nil {
+		logger.Println("Could not update user: ", err)
+		return nil
+	}
+	logger.Println("Updatating user: ", orig)
+	defer client.Close()
+	return user
+}
+
 //FindUser will return a User struct of the user being queried
 //based on key value pair of the caller's choosing. Still needs
 //to be tested extensively.
-func FindUser(key string, value string) *User {
+func FindUser(key string, value interface{}) *User {
 	body := new(User)
 	mlogger := mlogger.GetInstance()
 	client := database.GetInstance()
