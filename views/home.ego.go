@@ -26,8 +26,8 @@ func RenderHome(w io.Writer, u *models.User) {
 //line views/home.ego:19
 	fmt.Fprint(w, u.Username)
 //line views/home.ego:20
-	_, _ = io.WriteString(w, "\n        </p>\n      </nav>\n    </div>\n  </div>\n</body>\n")
-//line views/home.ego:25
+	_, _ = io.WriteString(w, "\n        </p>\n        <p class=\"title\">\n          Location:\n        </p>\n        <p class=\"subtitle\" id=\"location\">\n        </p>\n      </nav>\n    </div>\n  </div>\n</body>\n")
+//line views/home.ego:30
 }
 
 var _ fmt.Stringer

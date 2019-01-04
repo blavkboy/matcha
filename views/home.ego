@@ -18,6 +18,11 @@ produceHead(w, headers.HomeStyles, headers.HomeScripts)
         <p class="panel-heading">
           <% fmt.Fprint(w, u.Username) %>
         </p>
+        <p class="title">
+          Location:
+        </p>
+        <p class="subtitle" id="location">
+        </p>
       </nav>
     </div>
   </div>
