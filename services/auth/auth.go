@@ -44,6 +44,7 @@ func NewToken(next http.HandlerFunc) http.HandlerFunc {
 				"created":  time.Now().Unix(),
 				"exp":      time.Now().AddDate(0, 0, 7).Unix(),
 			})
+			logger.Println("DEBUG INFO user_id: ", compare.ID)
 			// Sign and get the complete encoded token as a string using the secret
 			tokenString, err := token.SignedString(mySigningKey)
 			if err != nil {
@@ -107,7 +108,7 @@ func GetCurrentUser(r *http.Request) *models.User {
 		return mySigningKey, nil
 	})
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		user := models.FindUser("username", claims["username"].(string))
+		user := models.FindUser("email", claims["email"].(string))
 		return user
 	}
 	return &models.User{Username: "Guest"}

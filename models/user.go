@@ -21,6 +21,7 @@ type User struct {
 	Lname    string        `json:"lname" bson:"lname"`
 	Email    string        `json:"email" bson:"email"`
 	Password string        `json:"password" bson:"password"`
+	Location GeoLocation   `json:"location" bson:"Location"`
 }
 
 //constant for the cost
@@ -43,7 +44,6 @@ func NewUser(user *User) *User {
 		Background: true,
 		Sparse:     true,
 	}
-
 	err := c.EnsureIndex(index)
 	if err != nil {
 		mlogger.Println("Error: ", err)

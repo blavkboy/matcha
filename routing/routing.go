@@ -46,7 +46,6 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Fail email")
 		return
 	}
-	newBody = &models.User{}
 	newBody = models.FindUser("username", body.Username)
 	if newBody != nil {
 		fmt.Fprintf(w, "Fail username")

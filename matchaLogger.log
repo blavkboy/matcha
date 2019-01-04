@@ -1,3 +1,10 @@
-Matcha matcha.go:18: 2019-01-04 08:56:22.693337 +0200 SAST m=+0.001596511
-Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc000106000 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc00010a000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:18: 2019-01-04 20:03:57.950609701 +0200 SAST m=+0.008668633
+Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc0000f4100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc0000fa000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:25: Starting 'Matcha' dating service API
+Matcha routing.go:43: Saving user with password:  $2a$06$HEqXooXoDAgxXo17C61poeIswahRoyWQ.2/kp27IvG9.qy0cdHvRC
+Matcha user.go:95: Error:  not found
+Matcha user.go:95: Error:  not found
+Matcha user.go:52: Ensured Index
+Matcha user.go:59: Inserting User
+Matcha routing.go:66: 2019-01-04 20:04:13.223066197 +0200 SAST m=+15.281125687
+Matcha routing.go:67: {ObjectIdHex("5c2fa01db3ddb15783c16da1") gmohlamo   g.mohlamonyane@gmail.com $2a$06$HEqXooXoDAgxXo17C61poeIswahRoyWQ.2/kp27IvG9.qy0cdHvRC {Point [-26.2056325 28.0371456]}}

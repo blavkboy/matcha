@@ -1,4 +1,5 @@
 window.onload = function() {
+  let userCoords = new Array;
   let login = document.getElementById("login");
   let register = document.getElementById("register");
   let close_login = document.querySelector("#login_modal .delete");
@@ -9,6 +10,18 @@ window.onload = function() {
 
   forgotPassword.onclick = function() {
     console.log("request password reset");
+  }
+  function getPosition(position) {
+    userCoords.push(position.coords.longitude, position.coords.latitude);
+    return userCoords;
+  }
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getPosition);
+      return true
+    } else {
+      return false
+    }
   }
   function varifyEmail(email) {
     //regular expression that will match most emails and tell the user if that account is valid
@@ -45,6 +58,7 @@ window.onload = function() {
   }
 
   register.onclick = function(){
+    getLocation();
     modal[1].classList.add("is-active");
   }
   
@@ -86,12 +100,18 @@ window.onload = function() {
     let username = document.getElementById("reg_username").value;
     let email = document.getElementById("reg_email").value;
     let password = document.getElementById("reg_password").value;
+    let longitude = userCoords[0];
+    let latitude = userCoords[1];
     if (varifyEmail(email) && varifyUsername(username) && varifyPassword(password)) {
       const url = location.protocol + "//" + location.host + "/users";
       var user = JSON.stringify({
         "username": username,
         "email": email,
-        "password": password
+        "password": password,
+        "location": {
+          "type": "Point",
+          "coordinates": [latitude, longitude]
+        }
       });
       xhr.open("POST", url);
       xhr.setRequestHeader("Content-Type", "application/json");
