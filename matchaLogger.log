@@ -1,10 +1,3 @@
-Matcha matcha.go:18: 2019-01-04 22:27:33.56473865 +0200 SAST m=+0.005172028
-Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc0000f6100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc0000fe000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:18: 2019-01-05 11:38:26.659414698 +0200 SAST m=+0.002188408
+Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc0000f2100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc0000f8000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:25: Starting 'Matcha' dating service API
-Matcha routing.go:43: Saving user with password:  $2a$06$ZZug48ARPg/Zq8tSiE49l.bL/VToqWiBowm01vuc.X8s/r5iF5S4a
-Matcha user.go:95: Error:  not found
-Matcha user.go:95: Error:  not found
-Matcha user.go:52: Ensured Index
-Matcha user.go:59: Inserting User
-Matcha routing.go:66: 2019-01-04 22:27:54.385039599 +0200 SAST m=+20.825475910
-Matcha routing.go:67: {ObjectIdHex("5c2fc1cab3ddb118316008ed") guava   guava@mailinator.com $2a$06$ZZug48ARPg/Zq8tSiE49l.bL/VToqWiBowm01vuc.X8s/r5iF5S4a {Point [-26.2056325 28.0371456]}}

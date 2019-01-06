@@ -22,12 +22,12 @@ func RenderHome(w io.Writer, u *models.User) {
 	produceHead(w, headers.HomeStyles, headers.HomeScripts)
 
 //line views/home.ego:13
-	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      <nav class=\"panel\">\n        <p class=\"panel-heading\">\n          ")
+	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      <nav class=\"panel\">\n        <p class=\"panel-heading\">\n          Welcome ")
 //line views/home.ego:19
 	fmt.Fprint(w, u.Username)
 //line views/home.ego:20
-	_, _ = io.WriteString(w, "\n        </p>\n        <p class=\"title\">\n          Location:\n        </p>\n        <p class=\"subtitle\" id=\"location\">\n        </p>\n      </nav>\n    </div>\n  </div>\n</body>\n")
-//line views/home.ego:30
+	_, _ = io.WriteString(w, "\n        </p>\n        <p class=\"panel-block\">\n          <span class=\"panel-icon\" style=\"color: orangered;\">\n            <i class=\"fas fa-fire\"></i>\n          </span>\n          Fame rating:\n        </p>\n        <p class=\"panel-block\">\n          <span class=\"panel-icon\" style=\"color: red;\">\n            <i class=\"fas fa-heart\"></i>\n          </span>\n          Likes: \n        </p>\n        <p class=\"panel-block\">\n          <span class=\"panel-icon\">\n            <i class=\"far fa-eye\"></i>\n          </span>\n          Vists: \n        </p>\n      </nav>\n    </div>\n  </div>\n</body>\n")
+//line views/home.ego:43
 }
 
 var _ fmt.Stringer
