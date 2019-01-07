@@ -33,6 +33,18 @@ func RegisterModal(w io.Writer) {
         </div>
 
         <div class="field">
+          <label class="label">First Name</label>
+          <div class="control has-icons-left has-icons-right">
+          <input class="input" id="reg_fname" type="text" placeholder="Enter First Name" value="">
+        </div>
+
+        <div class="field">
+          <label class="label">Last Name</label>
+          <div class="control has-icons-left has-icons-right">
+          <input class="input" id="reg_lname" type="text" placeholder="Enter Last Name" value="">
+        </div>
+
+        <div class="field">
             <label class="label">Password</label>
             <div class="control has-icons-left has-icons-right">
             <input class="input" id="reg_password" type="password" placeholder="Password" value="">

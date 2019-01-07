@@ -106,6 +106,8 @@ window.onload = function() {
         email.value = "";
         username.classList.remove("is-danger");
         username.value = "";
+        document.getElementById("reg_lname").value = "";
+        document.getElementById("reg_fname").value = "";
         closeReg()
       }
     }
@@ -116,14 +118,18 @@ window.onload = function() {
     let username = document.getElementById("reg_username").value;
     let email = document.getElementById("reg_email").value;
     let password = document.getElementById("reg_password").value;
+    let fname = document.getElementById("reg_fname").value;
+    let lname = document.getElementById("reg_lname").value;
     let longitude = userCoords[0];
     let latitude = userCoords[1];
-    if (varifyEmail(email) && varifyUsername(username) && varifyPassword(password)) {
+    if (varifyEmail(email) && varifyUsername(username) && varifyPassword(password) && ((fname.length > 0) && (lname.length > 0))) {
       const url = location.protocol + "//" + location.host + "/users";
       var user = JSON.stringify({
         "username": username,
         "email": email,
         "password": password,
+        "fname": fname,
+        "lname": lname,
         "location": {
           "type": "Point",
           "coordinates": [latitude, longitude]
@@ -139,6 +145,8 @@ window.onload = function() {
       mail.classList.remove("is-danger");
       let uname = document.getElementById("reg_username");
       uname.classList.remove("is-danger");
+      document.getElementById("reg_lname").classList.remove("is-danger");
+      document.getElementById("reg_fname").classList.remove("is-danger");
     }
     
     if (varifyPassword(password) == null) {
@@ -163,6 +171,18 @@ window.onload = function() {
     } else if (varifyUsername(username) == null) {
       let uname = document.getElementById("reg_username");
       uname.classList.remove("is-danger");
+    }
+
+    if (lname.length == 0) {
+      document.getElementById("reg_lname").classList.add("is-danger");
+    } else if (lname.length > 0) {
+      document.getElementById("reg_lname").classList.remove("is-danger");
+    }
+
+    if (fname.length == 0) {
+      document.getElementById("reg_fname").classList.add("is-danger");
+    } else if (fname.length > 0) {
+      document.getElementById("reg_fname").classList.remove("is-danger");
     }
   }
   
