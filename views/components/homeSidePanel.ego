@@ -1,0 +1,31 @@
+<%
+package components
+
+import "github.com/blavkboy/matcha/models"
+
+func HomeSidePanel(w io.Writer, u *models.User) {
+%>
+<nav class="panel">
+  <p class="panel-heading">
+    Welcome <% fmt.Fprint(w, u.Username) %>
+  </p>
+  <p class="panel-block">
+    <span class="panel-icon" style="color: orangered;">
+      <i class="fas fa-fire"></i>
+    </span>
+    Fame rating:
+  </p>
+  <p class="panel-block">
+    <span class="panel-icon" style="color: red;">
+      <i class="fas fa-heart"></i>
+    </span>
+    Likes: 
+  </p>
+  <p class="panel-block">
+    <span class="panel-icon">
+      <i class="far fa-eye"></i>
+    </span>
+    Vists: 
+  </p>
+</nav>
+<% } %>
