@@ -4,6 +4,7 @@ package headers
 func HomeStyles(w io.Writer) {
 %>
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/custom.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/static/css/home.css">
 <% }
 
 func HomeScripts(w io.Writer) {

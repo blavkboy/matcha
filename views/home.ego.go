@@ -23,14 +23,14 @@ func RenderHome(w io.Writer, u *models.User) {
 	produceHead(w, headers.HomeStyles, headers.HomeScripts)
 
 //line views/home.ego:14
-	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      ")
-//line views/home.ego:18
+	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <nav class=\"navbar\" role=\"navigation\" aria-label=\"main navigation\">\n    <div class=\"navbar-brand\">\n      <a role=\"button\" class=\"navbar-burger burger\" aria-label=\"menu\" aria-expanded=\"false\" data-target=\"matchaNavbar\">\n        <span aria-hidden=\"true\"></span>\n        <span aria-hidden=\"true\"></span>\n        <span aria-hidden=\"true\"></span>\n      </a>\n    </div>\n\n    <div id=\"home-navbar\" class=\"navbar-menu\">\n      <div class=\"navbar-start\">\n        <a class=\"navbar-item\">\n          Home\n        </a>\n        <a class=\"navbar-item\">\n          Profile\n        </a>\n        <a class=\"navbar-item\">\n          Users\n        </a>\n        <a class=\"navbar-item\">\n          Matches\n        </a>\n      </div>\n      <div class=\"navbar-end\">\n        <div class=\"navbar-item\">\n          <div class=\"buttons\">\n            <a class=\"button is-primary\">\n              <strong>Logout</strong>\n            </a>\n            <a class=\"button is-primary\">\n              Search users\n            </a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </nav>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      ")
+//line views/home.ego:56
 
 	components.HomeSidePanel(w, u)
 
-//line views/home.ego:21
-	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <figure class=\"image is-128x128\">\n        <img src=\"https://bulma.io/images/placeholders/128x128.png\">\n      </figure>\n    </div>\n  </div>\n</body>\n")
-//line views/home.ego:29
+//line views/home.ego:59
+	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <div class=\"container\" id=\"main_column\">\n      </div>\n    </div>\n  </div>\n</body>\n")
+//line views/home.ego:66
 }
 
 var _ fmt.Stringer
