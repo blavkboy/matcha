@@ -11,23 +11,26 @@ import "io"
 import "context"
 
 import "github.com/blavkboy/matcha/views/components/headers"
+import "github.com/blavkboy/matcha/views/components"
 import "github.com/blavkboy/matcha/models"
 
 func RenderHome(w io.Writer, u *models.User) {
 
-//line views/home.ego:9
-	_, _ = io.WriteString(w, "\n<head>\n")
 //line views/home.ego:10
+	_, _ = io.WriteString(w, "\n<head>\n")
+//line views/home.ego:11
 
 	produceHead(w, headers.HomeStyles, headers.HomeScripts)
 
-//line views/home.ego:13
-	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      <nav class=\"panel\">\n        <p class=\"panel-heading\">\n          Welcome ")
-//line views/home.ego:19
-	fmt.Fprint(w, u.Username)
-//line views/home.ego:20
-	_, _ = io.WriteString(w, "\n        </p>\n        <p class=\"panel-block\">\n          <span class=\"panel-icon\" style=\"color: orangered;\">\n            <i class=\"fas fa-fire\"></i>\n          </span>\n          Fame rating:\n        </p>\n        <p class=\"panel-block\">\n          <span class=\"panel-icon\" style=\"color: red;\">\n            <i class=\"fas fa-heart\"></i>\n          </span>\n          Likes: \n        </p>\n        <p class=\"panel-block\">\n          <span class=\"panel-icon\">\n            <i class=\"far fa-eye\"></i>\n          </span>\n          Vists: \n        </p>\n      </nav>\n    </div>\n  </div>\n</body>\n")
-//line views/home.ego:43
+//line views/home.ego:14
+	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      ")
+//line views/home.ego:18
+
+	components.HomeSidePanel(w, u)
+
+//line views/home.ego:21
+	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <figure class=\"image is-128x128\">\n        <img src=\"https://bulma.io/images/placeholders/128x128.png\">\n      </figure>\n    </div>\n  </div>\n</body>\n")
+//line views/home.ego:29
 }
 
 var _ fmt.Stringer

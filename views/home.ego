@@ -2,6 +2,7 @@
 package views
 
 import "github.com/blavkboy/matcha/views/components/headers"
+import "github.com/blavkboy/matcha/views/components"
 import "github.com/blavkboy/matcha/models"
 
 func RenderHome(w io.Writer, u *models.User) {
@@ -14,29 +15,13 @@ produceHead(w, headers.HomeStyles, headers.HomeScripts)
 <body>
   <div class="columns">
     <div class="column is-one-quarter">
-      <nav class="panel">
-        <p class="panel-heading">
-          Welcome <% fmt.Fprint(w, u.Username) %>
-        </p>
-        <p class="panel-block">
-          <span class="panel-icon" style="color: orangered;">
-            <i class="fas fa-fire"></i>
-          </span>
-          Fame rating:
-        </p>
-        <p class="panel-block">
-          <span class="panel-icon" style="color: red;">
-            <i class="fas fa-heart"></i>
-          </span>
-          Likes: 
-        </p>
-        <p class="panel-block">
-          <span class="panel-icon">
-            <i class="far fa-eye"></i>
-          </span>
-          Vists: 
-        </p>
-      </nav>
+      <%
+        components.HomeSidePanel(w, u)
+      %>
+    </div>
+    <div class="column is-three-quarter">
+      <div class="container" id="main_column">
+      </div>
     </div>
   </div>
 </body>
