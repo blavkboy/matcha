@@ -23,14 +23,20 @@ func RenderHome(w io.Writer, u *models.User) {
 	produceHead(w, headers.HomeStyles, headers.HomeScripts)
 
 //line views/home.ego:14
-	_, _ = io.WriteString(w, "\n</head>\n<body>\n  <nav class=\"navbar\" role=\"navigation\" aria-label=\"main navigation\">\n    <div class=\"navbar-brand\">\n      <a role=\"button\" class=\"navbar-burger burger\" aria-label=\"menu\" aria-expanded=\"false\" data-target=\"matchaNavbar\">\n        <span aria-hidden=\"true\"></span>\n        <span aria-hidden=\"true\"></span>\n        <span aria-hidden=\"true\"></span>\n      </a>\n    </div>\n\n    <div id=\"home-navbar\" class=\"navbar-menu\">\n      <div class=\"navbar-start\">\n        <a class=\"navbar-item\">\n          Home\n        </a>\n        <a class=\"navbar-item\">\n          Profile\n        </a>\n        <a class=\"navbar-item\">\n          Users\n        </a>\n        <a class=\"navbar-item\">\n          Matches\n        </a>\n      </div>\n      <div class=\"navbar-end\">\n        <div class=\"navbar-item\">\n          <div class=\"buttons\">\n            <a class=\"button is-primary\">\n              <strong>Logout</strong>\n            </a>\n            <a class=\"button is-primary\">\n              Search users\n            </a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </nav>\n  <div class=\"columns\">\n    <div class=\"column is-one-quarter\">\n      ")
-//line views/home.ego:56
+	_, _ = io.WriteString(w, "\n</head>\n<body>\n  ")
+//line views/home.ego:16
+
+	components.HomeNavbar(w, u)
+
+//line views/home.ego:19
+	_, _ = io.WriteString(w, "\n  <div class=\"columns\" style=\"height: 100%;\"> \n    <div class=\"column is-one-quarter\">\n      ")
+//line views/home.ego:21
 
 	components.HomeSidePanel(w, u)
 
-//line views/home.ego:59
-	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <div class=\"container\" id=\"main_column\">\n      </div>\n    </div>\n  </div>\n</body>\n")
-//line views/home.ego:66
+//line views/home.ego:24
+	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <div class=\"container\" id=\"main_column\" style=\"height: 100%;\" style=\"grid-row: 1; grid-column: 1;\">\n      <img src=\"http://localhost:8080/static/defaultpic.jpg\" alt=\"profile picture\">\n      <div style=\"grid-row: 2; grid-column: 2\">\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis luctus metus. Nam ut risus nunc. Aenean tristique sapien tortor, sit amet ultrices metus sollicitudin ultricies. Vestibulum condimentum nisl tempus viverra ultricies. Nullam eu massa venenatis metus vulputate accumsan. Mauris interdum ut odio scelerisque blandit.\n      </div>\n      </div>\n    </div>\n  </div>\n</body>\n")
+//line views/home.ego:35
 }
 
 var _ fmt.Stringer

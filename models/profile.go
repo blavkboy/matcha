@@ -1,9 +1,11 @@
 package models
 
-import "gopkg.in/mgo.v2/bson"
-
 type Profile struct {
-	ID         bson.ObjectId `json:"id" bson:"_id"`
-	UserID     bson.ObjectId `json:"userid" bson;"userid"`
-	ProfilePic []byte        `json:"profilepic" bson:"profilepic"`
+	Visits    int64    `json:"vists" bson:"vists"`
+	Likes     int64    `json:"likes" bson:"likes"`
+	Fame      int64    `json:"fame" bson:"fame"`
+	Propic    string   `json:"propic" bson:"propic"`
+	Images    []string `json:"images" bson:"images"`
+	Sex       string   `json:"sex" bson:"sex"`
+	Interests []string `json:"interests" bson:"interests"`
 }
