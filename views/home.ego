@@ -12,22 +12,22 @@ func RenderHome(w io.Writer, u *models.User) {
 produceHead(w, headers.HomeStyles, headers.HomeScripts)
 %>
 </head>
-<body>
+<body style="height:100%; width:100%;">
   <%
     components.HomeNavbar(w, u)
   %>
-  <div class="columns" style="height: 100%;"> 
+  <div class="columns"> 
     <div class="column is-one-quarter">
       <%
         components.HomeSidePanel(w, u)
       %>
     </div>
     <div class="column is-three-quarter">
-      <div class="container" id="main_column" style="height: 100%;" style="grid-row: 1; grid-column: 1;">
-      <img src="http://localhost:8080/static/defaultpic.jpg" alt="profile picture">
-      <div style="grid-row: 2; grid-column: 2">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis luctus metus. Nam ut risus nunc. Aenean tristique sapien tortor, sit amet ultrices metus sollicitudin ultricies. Vestibulum condimentum nisl tempus viverra ultricies. Nullam eu massa venenatis metus vulputate accumsan. Mauris interdum ut odio scelerisque blandit.
-      </div>
+      <div class="container" id="main_column" style="grid-row: 1; grid-column: 1;">
+        <img src="http://localhost:8080/static/defaultpic.jpg" alt="profile picture">
+        <div style="grid-row:2; grid-column: 2;">
+        Hello
+        </div>
       </div>
     </div>
   </div>

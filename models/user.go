@@ -22,6 +22,7 @@ type User struct {
 	Email    string        `json:"email" bson:"email"`
 	Password string        `json:"password" bson:"password"`
 	Location GeoLocation   `json:"location" bson:"Location"`
+	Profile  Profile       `json:"profile" bson:"profile"`
 }
 
 //constant for the cost

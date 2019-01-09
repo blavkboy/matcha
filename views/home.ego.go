@@ -23,19 +23,19 @@ func RenderHome(w io.Writer, u *models.User) {
 	produceHead(w, headers.HomeStyles, headers.HomeScripts)
 
 //line views/home.ego:14
-	_, _ = io.WriteString(w, "\n</head>\n<body>\n  ")
+	_, _ = io.WriteString(w, "\n</head>\n<body style=\"height:100%; width:100%;\">\n  ")
 //line views/home.ego:16
 
 	components.HomeNavbar(w, u)
 
 //line views/home.ego:19
-	_, _ = io.WriteString(w, "\n  <div class=\"columns\" style=\"height: 100%;\"> \n    <div class=\"column is-one-quarter\">\n      ")
+	_, _ = io.WriteString(w, "\n  <div class=\"columns\"> \n    <div class=\"column is-one-quarter\">\n      ")
 //line views/home.ego:21
 
 	components.HomeSidePanel(w, u)
 
 //line views/home.ego:24
-	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <div class=\"container\" id=\"main_column\" style=\"height: 100%;\" style=\"grid-row: 1; grid-column: 1;\">\n      <img src=\"http://localhost:8080/static/defaultpic.jpg\" alt=\"profile picture\">\n      <div style=\"grid-row: 2; grid-column: 2\">\n      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis luctus metus. Nam ut risus nunc. Aenean tristique sapien tortor, sit amet ultrices metus sollicitudin ultricies. Vestibulum condimentum nisl tempus viverra ultricies. Nullam eu massa venenatis metus vulputate accumsan. Mauris interdum ut odio scelerisque blandit.\n      </div>\n      </div>\n    </div>\n  </div>\n</body>\n")
+	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <div class=\"container\" id=\"main_column\" style=\"grid-row: 1; grid-column: 1;\">\n        <img src=\"http://localhost:8080/static/defaultpic.jpg\" alt=\"profile picture\">\n        <div style=\"grid-row:2; grid-column: 2;\">\n        Hello\n        </div>\n      </div>\n    </div>\n  </div>\n</body>\n")
 //line views/home.ego:35
 }
 

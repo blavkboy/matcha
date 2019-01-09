@@ -3,7 +3,7 @@ package models
 type Profile struct {
 	Visits    int64    `json:"vists" bson:"vists"`
 	Likes     int64    `json:"likes" bson:"likes"`
-	Fame      int64    `json:"fame" bson:"fame"`
+	Fame      float64  `json:"fame" bson:"fame"`
 	Propic    string   `json:"propic" bson:"propic"`
 	Images    []string `json:"images" bson:"images"`
 	Sex       string   `json:"sex" bson:"sex"`
