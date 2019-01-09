@@ -10,6 +10,9 @@ import (
 //In the event that a user is online, a new connection should be established, the User's ID and a pointer
 //to his/her connection is stored in the map. Should a user disconnect then we delete the connection.
 
+//Connection will represent the way that connections are dealt with.
+//When instanciated the models.User struct will be used to identify
+//the user who's browser is sending a message
 type Connection struct {
 	User       *models.User
 	Connection *websocket.Conn
