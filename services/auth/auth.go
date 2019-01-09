@@ -98,20 +98,27 @@ func GetCurrentUser(r *http.Request) *models.User {
 		return &models.User{Username: "Guest"}
 	}
 	tokenString := cookie.Value
-	fmt.Println("token string: ", tokenString)
+	return GetUserFromString(tokenString)
+}
+
+func GetUserFromString(tokenString string) *models.User {
+	mlogger := mlogger.GetInstance()
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			logger.Println("Error: Unexpected signing method. ", token.Header["alg"])
+			mlogger.Println("Error: Unexpected signing method. ", token.Header["alg"])
 			return nil, fmt.Errorf("Error: Unexpected signing method: %v", token.Header["alg"])
 		}
 
 		return mySigningKey, nil
 	})
+	if err != nil {
+		mlogger.Println("Error parsing jwt string: ", err)
+	}
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		user := models.FindUser("email", claims["email"].(string))
 		return user
 	}
-	return &models.User{Username: "Guest"}
+	return nil
 }
 
 func failedAuth(w http.ResponseWriter, r *http.Request) {

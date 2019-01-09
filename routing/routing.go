@@ -3,12 +3,15 @@ package routing
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
 	"github.com/blavkboy/matcha/services/auth"
+	"github.com/blavkboy/matcha/socket"
 	"github.com/blavkboy/matcha/views"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -77,4 +80,41 @@ func HandleCheck(w http.ResponseWriter, r *http.Request) {
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
 	views.RenderHome(w, auth.GetCurrentUser(r))
+}
+
+func SocketConn(w http.ResponseWriter, r *http.Request) {
+	mlogger := mlogger.GetInstance()
+	token := strings.Split(r.URL.Path, "ws/")[1]
+	if token == "" {
+		mlogger.Println("Error getting jwt string")
+		fmt.Fprint(w, "Connection rejected")
+		return
+	}
+	user := auth.GetUserFromString(token)
+	if user == nil {
+		fmt.Fprint(w, "Rejected")
+	}
+	conn, err := socket.Upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		mlogger.Println("Error establishing connection: ", err)
+		return
+	}
+	connection := socket.Connection{
+		User:       user,
+		Connection: conn,
+	}
+	socket.UserConnections[user.ID] = connection
+	for {
+		messageType, p, err := connection.Connection.ReadMessage()
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		fmt.Printf("%v %v\n", string(p), messageType)
+		/*
+		   if err := conn.WriteMessage(messageType, p); err != nil {
+		       log.Println(err)
+		       return
+		   }*/
+	}
 }
