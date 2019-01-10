@@ -1,6 +1,9 @@
 package socket
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/blavkboy/matcha/models"
 	"github.com/gorilla/websocket"
 	"gopkg.in/mgo.v2/bson"
@@ -18,9 +21,24 @@ type Connection struct {
 	Connection *websocket.Conn
 }
 
+type MessageReader struct {
+	Type        string         `json:"type"`
+	CommandType string         `json:"commandType"`
+	Component   string         `json:"component"`
+	Message     models.Message `json:"message"`
+}
+
 var UserConnections = make(map[bson.ObjectId]Connection)
 
 var Upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
+}
+
+func HandleMessage(msg *MessageReader) {
+	if strings.Compare("message", string(msg.Type)) == 0 {
+		message := new(models.Message)
+		fmt.Println(message)
+		return
+	}
 }

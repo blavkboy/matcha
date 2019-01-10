@@ -132,7 +132,7 @@ window.onload = function() {
         "lname": lname,
         "location": {
           "type": "Point",
-          "coordinates": [latitude, longitude]
+          "coordinates": [longitude, latitude]
         }
       });
       xhr.open("POST", url);

@@ -24,10 +24,11 @@ produceHead(w, headers.HomeStyles, headers.HomeScripts)
     </div>
     <div class="column is-three-quarter">
       <div class="container" id="main_column" style="grid-row: 1; grid-column: 1;">
+        <!-- home component -->
         <img src="http://localhost:8080/static/defaultpic.jpg" alt="profile picture">
         <div style="grid-row:2; grid-column: 2;">
-        Hello
         </div>
+        <!-- home component -->
       </div>
     </div>
   </div>

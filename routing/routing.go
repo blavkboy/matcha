@@ -13,6 +13,7 @@ import (
 	"github.com/blavkboy/matcha/services/auth"
 	"github.com/blavkboy/matcha/socket"
 	"github.com/blavkboy/matcha/views"
+	"github.com/gorilla/websocket"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -83,6 +84,7 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 }
 
 func SocketConn(w http.ResponseWriter, r *http.Request) {
+	var start int = 0
 	mlogger := mlogger.GetInstance()
 	token := strings.Split(r.URL.Path, "ws/")[1]
 	if token == "" {
@@ -108,13 +110,18 @@ func SocketConn(w http.ResponseWriter, r *http.Request) {
 		messageType, p, err := connection.Connection.ReadMessage()
 		if err != nil {
 			log.Println(err)
-			return
+			continue
 		}
-		fmt.Printf("%v %v\n", string(p), messageType)
-		/*
-		   if err := conn.WriteMessage(messageType, p); err != nil {
-		       log.Println(err)
-		       return
-		   }*/
+		if start == 0 {
+			fmt.Println(string(p))
+			start++
+			continue
+		}
+		if messageType == websocket.TextMessage {
+			fmt.Println("Got here")
+			msg := new(socket.MessageReader)
+			err = json.Unmarshal(p, msg)
+			fmt.Println(msg)
+		}
 	}
 }

@@ -35,8 +35,8 @@ func RenderHome(w io.Writer, u *models.User) {
 	components.HomeSidePanel(w, u)
 
 //line views/home.ego:24
-	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <div class=\"container\" id=\"main_column\" style=\"grid-row: 1; grid-column: 1;\">\n        <img src=\"http://localhost:8080/static/defaultpic.jpg\" alt=\"profile picture\">\n        <div style=\"grid-row:2; grid-column: 2;\">\n        Hello\n        </div>\n      </div>\n    </div>\n  </div>\n</body>\n")
-//line views/home.ego:35
+	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <div class=\"container\" id=\"main_column\" style=\"grid-row: 1; grid-column: 1;\">\n        <!-- home component -->\n        <img src=\"http://localhost:8080/static/defaultpic.jpg\" alt=\"profile picture\">\n        <div style=\"grid-row:2; grid-column: 2;\">\n        Hello\n        </div>\n        <!-- home component -->\n      </div>\n    </div>\n  </div>\n</body>\n")
+//line views/home.ego:37
 }
 
 var _ fmt.Stringer

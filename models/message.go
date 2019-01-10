@@ -1,6 +1,11 @@
 package models
 
 import (
+	"fmt"
+
+	"github.com/blavkboy/matcha/database"
+	"github.com/blavkboy/matcha/mlogger"
+	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -16,10 +21,10 @@ type Chat struct {
 	Messages []Message              `json:"messages" bson:"messages"`
 }
 
-/*
+var logger = mlogger.GetInstance()
+
 func StoreMessage(message Message) {
-	mlogger := mlogger.GetInstance()
-	mlogger.Println("Storing message between: ", message.From, " and", message.To)
+	logger.Println("Storing message between: ", message.From, " and", message.To)
 	client := database.GetInstance()
 	defer client.Close()
 	c := client.DB("matcha").C("chats")
@@ -32,17 +37,18 @@ func StoreMessage(message Message) {
 	}
 	err := c.EnsureIndex(index)
 	if err != nil {
-		mlogger.Println("Error ensuring index: ", err)
+		logger.Println("Error ensuring index: ", err)
 		return
 	}
 	chat := new(Chat)
 	users := make(map[string]interface{})
 	users[message.From] = FindUser("username", message.From)
 	users[message.To] = FindUser("username", message.To)
+	fmt.Println(users)
 	err = c.Find(bson.M{
 		"users": users,
 	}).One(chat)
 	if err != nil {
-		mlogger.Println("Error retrieving chat struct: ", err)
+		logger.Println("Error retrieving chat struct: ", err)
 	}
-}*/
+}
