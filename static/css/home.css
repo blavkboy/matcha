@@ -21,3 +21,7 @@ body {
 .panel {
   padding: 1%;
 }
+
+#picture {
+  justify-items: center;
+}

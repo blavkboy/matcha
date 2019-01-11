@@ -21,11 +21,22 @@ type Connection struct {
 	Connection *websocket.Conn
 }
 
+type ProfileForm struct {
+	Fname       string   `json:"fname"`
+	Lname       string   `json:"lname"`
+	Uname       string   `json:"uname"`
+	Email       string   `json:"email"`
+	Gender      string   `json:"gender"`
+	Orientation string   `json:"orientation"`
+	Interests   []string `json:"interests"`
+}
+
 type MessageReader struct {
 	Type        string         `json:"type"`
 	CommandType string         `json:"commandType"`
 	Component   string         `json:"component"`
 	Message     models.Message `json:"message"`
+	Pform       ProfileForm    `json:"pform"`
 }
 
 var UserConnections = make(map[bson.ObjectId]Connection)

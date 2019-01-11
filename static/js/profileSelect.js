@@ -1,18 +1,29 @@
-var gender;
-var gender_choice;
-var orientation;
-var orientation_choice;
 let submit = document.getElementById("submit");
 let form = document.querySelector("form");
-gender = document.getElementById("gender");
-orientation = document.getElementById("orientation");
+var submission;
+let reader = new FileReader();
+let propic = document.getElementById("propic");
+let newPic;
 //when clicking the submit button all the values from the inputs
 //should be collected and packaged so that they can be sent to the server.
 submit.onclick = function() {
-  let submission = {
+  submission = {
     "type": "command",
-    "commandType": "submission"
+    "commandType": "profile",
+    "pform": {
+      "fname": form.elements[0].value,
+      "lname": form.elements[1].value,
+      "uname": form.elements[2].value,
+      "email": form.elements[3].value,
+      "gender": form.elements[4].selectedOptions[0].value,
+      "orientation": form.elements[5].selectedOptions[0].value,
+      "interests": form.elements[6].value.split(" ")
+    }
   }
-  gender_choice = gender.selectedOptions[0].text;
-  orientation_choice = orientation.selectedOptions[0].text;
+  let subs = JSON.stringify(submission);
+  ws.send(subs);
+}
+
+propic.onchange = function() {
+  reader.readAsDataURL(propic.files[0]);
 }
