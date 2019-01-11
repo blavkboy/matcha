@@ -23,73 +23,9 @@ produceHead(w, headers.HomeStyles, headers.HomeScripts)
       %>
     </div>
     <div class="column is-three-quarters" id="rightColumn">
-      <div class="container" id="main_column" style="grid-row: 1; grid-column: 1;">
-        <!-- home component -->
-        <img src="http://localhost:8080/static/defaultpic.jpg" alt="profile picture">
-        <div style="grid-row:1/2; grid-column: 2;">
-          <div class="field">
-            <label class="label">First Name</label>
-            <div class="control">
-              <input class="input is-medium" type="text" placeholder="<% fmt.Fprint(w, u.Fname) %>">
-            </div>
-          </div>
-          <div style="field">
-            <label class="label">Last Name</label>
-            <div class="control">
-              <input class="input is-medium" type="text" placeholder="<% fmt.Fprint(w, u.Lname) %>">
-            </div>
-          </div>
-          <div style="field">
-            <label class="label">Username</label>
-            <div class="control">
-              <input class="input is-medium" type="text" placeholder="<% fmt.Fprint(w, u.Username) %>">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input class="input is-medium" type="text" placeholder="<% fmt.Fprint(w, u.Email) %>">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Sex</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                <%
-                  sex := [5]string{"Select", "Male", "Female", "Apache Helicopter", "Other"}
-                  for _, val := range sex { %>
-                    <option><% fmt.Fprint(w, val) %></option>
-                <% } %>
-                </select>
-                <p class="subtitle is-5" id="sexTitle"><% fmt.Fprint(w, u.Sex) %></p>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Who are interested in meeting?</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <%
-                    orientation := [5]string{"Select", "Men", "Women", "Apache Helicopters", "All"}
-                    for _, val := range orientation { %>
-                      <option><% fmt.Fprint(w, val) %></option>
-                  <% } %>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <label>Interests</label>
-            <div class="control">
-              <textarea class="textarea is-medium" placeholder="Enter your interests in here like you would a series of twitter hash tags"></textarea>
-            </div>
-          </div>
-          <a class="button is-success">Submit Changes</a>
-        </div>
-        <!-- home component -->
-      </div>
+      <%
+        components.RenderProfileColumn(w, u)
+      %>
     </div>
   </div>
 </body>

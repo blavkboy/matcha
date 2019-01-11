@@ -107,6 +107,7 @@ func SocketConn(w http.ResponseWriter, r *http.Request) {
 	}
 	socket.UserConnections[user.ID] = connection
 	for {
+		fmt.Println("Got connection")
 		messageType, p, err := connection.Connection.ReadMessage()
 		if err != nil {
 			log.Println(err)
