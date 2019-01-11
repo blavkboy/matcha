@@ -118,9 +118,12 @@ func SocketConn(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 		if messageType == websocket.TextMessage {
-			fmt.Println("Got here")
 			msg := new(socket.MessageReader)
 			err = json.Unmarshal(p, msg)
+			if err != nil {
+				log.Println("Error unmarshalling message: ", err)
+				continue
+			}
 			fmt.Println(msg)
 		}
 	}

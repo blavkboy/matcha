@@ -19,6 +19,7 @@ type User struct {
 	Username string        `json:"username" bson:"username"`
 	Fname    string        `json:"fname" bson:"fname"`
 	Lname    string        `json:"lname" bson:"lname"`
+	Sex      string        `json:"sex" bson:"sex"`
 	Email    string        `json:"email" bson:"email"`
 	Password string        `json:"password" bson:"password"`
 	Location GeoLocation   `json:"location" bson:"Location"`

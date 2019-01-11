@@ -16,7 +16,7 @@ import "strings"
 func HomeNavbar(w io.Writer, u *models.User) {
 
 //line views/components/homeNavbar.ego:9
-	_, _ = io.WriteString(w, "\n<nav class=\"navbar is-dark\" role=\"navigation\" aria-label=\"main navigation\">\n  <div class=\"navbar-brand\">\n    <a role=\"button\" class=\"navbar-burger burger\" aria-label=\"menu\" aria-expanded=\"false\" data-target=\"matchaNavbar\">\n      <span aria-hidden=\"true\"></span>\n      <span aria-hidden=\"true\"></span>\n      <span aria-hidden=\"true\"></span>\n    </a>\n  </div>\n  <div id=\"home-navbar\" class=\"navbar-menu is-primary\">\n    <div class=\"navbar-start\">\n      ")
+	_, _ = io.WriteString(w, "\n<nav class=\"navbar is-dark\" role=\"navigation\" aria-label=\"main navigation\" style=\"width: 100%;\">\n  <div class=\"navbar-brand\">\n    <a role=\"button\" class=\"navbar-burger burger\" aria-label=\"menu\" aria-expanded=\"false\" data-target=\"matchaNavbar\">\n      <span aria-hidden=\"true\"></span>\n      <span aria-hidden=\"true\"></span>\n      <span aria-hidden=\"true\"></span>\n    </a>\n  </div>\n  <div id=\"home-navbar\" class=\"navbar-menu is-primary\">\n    <div class=\"navbar-start\">\n      ")
 //line views/components/homeNavbar.ego:19
 	if strings.Compare("guest", u.Username) != 0 {
 //line views/components/homeNavbar.ego:20

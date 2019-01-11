@@ -35,8 +35,56 @@ func RenderHome(w io.Writer, u *models.User) {
 	components.HomeSidePanel(w, u)
 
 //line views/home.ego:24
-	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-three-quarter\">\n      <div class=\"container\" id=\"main_column\" style=\"grid-row: 1; grid-column: 1;\">\n        <!-- home component -->\n        <img src=\"http://localhost:8080/static/defaultpic.jpg\" alt=\"profile picture\">\n        <div style=\"grid-row:2; grid-column: 2;\">\n        Hello\n        </div>\n        <!-- home component -->\n      </div>\n    </div>\n  </div>\n</body>\n")
-//line views/home.ego:37
+	_, _ = io.WriteString(w, "\n    </div>\n    <div class=\"column is-two-thirds\" id=\"rightColumn\">\n      <div class=\"container\" id=\"main_column\" style=\"grid-row: 1; grid-column: 1;\">\n        <!-- home component -->\n        <img src=\"http://localhost:8080/static/defaultpic.jpg\" alt=\"profile picture\">\n        <div style=\"grid-row:1/2; grid-column: 2;\">\n          <div class=\"field\">\n            <label class=\"label\">First Name</label>\n            <div class=\"control\">\n              <input class=\"input is-medium\" type=\"text\" placeholder=\"")
+//line views/home.ego:33
+	fmt.Fprint(w, u.Fname)
+//line views/home.ego:33
+	_, _ = io.WriteString(w, "\">\n            </div>\n          </div>\n          <div style=\"field\">\n            <label class=\"label\">Last Name</label>\n            <div class=\"control\">\n              <input class=\"input is-medium\" type=\"text\" placeholder=\"")
+//line views/home.ego:39
+	fmt.Fprint(w, u.Lname)
+//line views/home.ego:39
+	_, _ = io.WriteString(w, "\">\n            </div>\n          </div>\n          <div style=\"field\">\n            <label class=\"label\">Username</label>\n            <div class=\"control\">\n              <input class=\"input is-medium\" type=\"text\" placeholder=\"")
+//line views/home.ego:45
+	fmt.Fprint(w, u.Username)
+//line views/home.ego:45
+	_, _ = io.WriteString(w, "\">\n            </div>\n          </div>\n          <div class=\"field\">\n            <label class=\"label\">Email</label>\n            <div class=\"control\">\n              <input class=\"input is-medium\" type=\"text\" placeholder=\"")
+//line views/home.ego:51
+	fmt.Fprint(w, u.Email)
+//line views/home.ego:51
+	_, _ = io.WriteString(w, "\">\n            </div>\n          </div>\n          <div class=\"field\">\n            <label class=\"label\">Sex</label>\n            <div class=\"control\">\n              <div class=\"select\">\n                <select>\n                ")
+//line views/home.ego:59
+
+	sex := [5]string{"Select", "Male", "Female", "Apache Helicopter", "Other"}
+	for _, val := range sex {
+//line views/home.ego:62
+		_, _ = io.WriteString(w, "\n                    <option>")
+//line views/home.ego:62
+		fmt.Fprint(w, val)
+//line views/home.ego:62
+		_, _ = io.WriteString(w, "</option>\n                ")
+//line views/home.ego:63
+	}
+//line views/home.ego:64
+	_, _ = io.WriteString(w, "\n                </select>\n                <p class=\"subtitle is-5\" id=\"sexTitle\">")
+//line views/home.ego:65
+	fmt.Fprint(w, u.Sex)
+//line views/home.ego:65
+	_, _ = io.WriteString(w, "</p>\n              </div>\n            </div>\n          </div>\n          <div class=\"field\">\n            <label class=\"label\">Who are interested in meeting?</label>\n            <div class=\"control\">\n              <div class=\"select\">\n                <select>\n                  ")
+//line views/home.ego:74
+
+	orientation := [5]string{"Select", "Men", "Women", "Apache Helicopters", "All"}
+	for _, val := range orientation {
+//line views/home.ego:77
+		_, _ = io.WriteString(w, "\n                      <option>")
+//line views/home.ego:77
+		fmt.Fprint(w, val)
+//line views/home.ego:77
+		_, _ = io.WriteString(w, "</option>\n                  ")
+//line views/home.ego:78
+	}
+//line views/home.ego:79
+	_, _ = io.WriteString(w, "\n                </select>\n              </div>\n            </div>\n          </div>\n          <div class=\"field\">\n            <label>Interests</label>\n            <div class=\"control\">\n              <textarea class=\"textarea is-medium\" placeholder=\"Enter your interests in here like you would a series of twitter hash tags\"></textarea>\n            </div>\n          </div>\n          <a class=\"button is-success\">Submit Changes</a>\n        </div>\n        <!-- home component -->\n      </div>\n    </div>\n  </div>\n</body>\n")
+//line views/home.ego:96
 }
 
 var _ fmt.Stringer
