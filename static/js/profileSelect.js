@@ -4,6 +4,7 @@ var submission;
 let reader = new FileReader();
 let propic = document.getElementById("propic");
 let newPic;
+let picSubmit = document.getElementById("picsubmit");
 //when clicking the submit button all the values from the inputs
 //should be collected and packaged so that they can be sent to the server.
 submit.onclick = function() {
@@ -26,4 +27,14 @@ submit.onclick = function() {
 
 propic.onchange = function() {
   reader.readAsDataURL(propic.files[0]);
+}
+
+picsubmit.onclick = function() {
+  submission = {
+    "type": "command",
+    "commandType": "propic",
+    "command": reader.result
+  }
+  let subs = JSON.stringify(submission);
+  ws.send(subs);
 }

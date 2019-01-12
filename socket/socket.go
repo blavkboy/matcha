@@ -35,6 +35,7 @@ type MessageReader struct {
 	Type        string         `json:"type"`
 	CommandType string         `json:"commandType"`
 	Component   string         `json:"component"`
+	Command     string         `json:"command"`
 	Message     models.Message `json:"message"`
 	Pform       ProfileForm    `json:"pform"`
 }
@@ -51,5 +52,16 @@ func HandleMessage(msg *MessageReader) {
 		message := new(models.Message)
 		fmt.Println(message)
 		return
+	}
+}
+
+func (msg *MessageReader) HandleCommand(res *string) {
+}
+
+func (msg *MessageReader) EvalMsg(res *string) {
+	*res = ""
+	switch msg.Type {
+	case "command":
+		msg.HandleCommand(res)
 	}
 }
