@@ -63,22 +63,13 @@ func NewUser(user *User) *User {
 	return user
 }
 
-func UpdateUser(updatedUser *User) *User {
-	logger := mlogger.GetInstance()
-	var orig User
-	user := FindUser("id", updatedUser.ID)
+func (user *User) UpdateUser() error {
+	mlogger := mlogger.GetInstance()
+	mlogger.Println("Attempting to update user_no: ", user.ID)
 	client := database.GetInstance()
-	c := client.DB("matcha").C("users")
-	err := c.Find(bson.M{
-		"_id": user.ID,
-	}).One(orig)
-	if err != nil {
-		logger.Println("Could not update user: ", err)
-		return nil
-	}
-	logger.Println("Updatating user: ", orig)
 	defer client.Close()
-	return user
+	c := client.DB("matcha").C("users")
+	return c.Update(bson.M{"_id": user.ID}, user)
 }
 
 //FindUser will return a User struct of the user being queried

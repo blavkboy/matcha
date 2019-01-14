@@ -1,5 +1,5 @@
-Matcha matcha.go:18: 2019-01-12 11:26:45.4289378 +0200 SAST m=+0.002817119
-Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc00010e100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000118000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:18: 2019-01-13 19:44:30.087511129 +0200 SAST m=+0.259875252
+Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc000110100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc00011c000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:25: Starting 'Matcha' dating service API
 Matcha auth.go:40: Password match for user:  true
-Matcha auth.go:47: DEBUG INFO user_id:  ObjectIdHex("5c37ad2ab3ddb10f63387405")
+Matcha auth.go:47: DEBUG INFO user_id:  ObjectIdHex("5c3b145bb3ddb10c1bbfe2ad")

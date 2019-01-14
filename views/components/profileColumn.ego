@@ -8,7 +8,11 @@ func RenderProfileColumn(w io.Writer, u *models.User) {
 <div class="container" id="main_column" style="grid-row: 1; grid-column: 1;">
   <!-- home component -->
   <div class="container" id="picture" style="width: 150px;">
+  <% if u.Profile.Propic == "" { %>
     <img src="http://localhost:8080/static/defaultpic.jpg" alt="profile picture">
+  <% } else { %>
+    <img src="<% fmt.Fprint(w, u.Profile.Propic) %>" id="propic" style="width: 150px;">
+  <% } %>
     <div class="field">
       <div class="file is-success is-small is-rounded">
         <label class="file-label">

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
 	"github.com/gorilla/websocket"
 	"gopkg.in/mgo.v2/bson"
@@ -55,13 +56,49 @@ func HandleMessage(msg *MessageReader) {
 	}
 }
 
-func (msg *MessageReader) HandleCommand(res *string) {
+func (msg *MessageReader) HandleCommand(res *string, u *models.User) {
+	mlogger := mlogger.GetInstance()
+	if msg.CommandType == "profile" {
+		if msg.Pform.Lname != "" {
+			u.Lname = msg.Pform.Lname
+		}
+		if msg.Pform.Fname != "" {
+			u.Fname = msg.Pform.Fname
+		}
+		if msg.Pform.Gender != "Select" {
+			u.Sex = msg.Pform.Gender
+		}
+		if msg.Pform.Orientation != "Select" {
+			u.Profile.Orientation = msg.Pform.Orientation
+		}
+		if len(msg.Pform.Interests) > 0 && msg.Pform.Interests[0] != "" {
+			u.Profile.Interests = msg.Pform.Interests
+		}
+	} else if msg.CommandType == "propic" {
+		u.Profile.Propic = msg.Command
+	}
+	err := u.UpdateUser()
+	if err != nil {
+		fmt.Println("Error updating user: ", err)
+		mlogger.Println("Error updating user: ", err)
+		*res = "{\"status\": false}"
+	} else {
+		fmt.Println("Success")
+		mlogger.Println("Successully updated user_no: ", u.ID)
+		*res = "{\"status\": true}"
+	}
 }
 
-func (msg *MessageReader) EvalMsg(res *string) {
+func (msg *MessageReader) EvalMsg(res *string, user *models.User, connection *Connection) {
+	mlogger := mlogger.GetInstance()
 	*res = ""
 	switch msg.Type {
 	case "command":
-		msg.HandleCommand(res)
+		msg.HandleCommand(res, user)
+		err := connection.Connection.WriteMessage(websocket.TextMessage, []byte(*res))
+		if err != nil {
+			mlogger.Println("Error writing message to connection: ", err)
+			return
+		}
 	}
 }

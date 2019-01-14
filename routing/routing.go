@@ -127,7 +127,7 @@ func SocketConn(w http.ResponseWriter, r *http.Request) {
 				continue
 			}
 			fmt.Println(msg)
-			msg.EvalMsg(&res)
+			msg.EvalMsg(&res, user)
 		}
 	}
 }

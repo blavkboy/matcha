@@ -25,7 +25,11 @@ window.onload = async function() {
     ws.send("Connection opened from this side")
   }
   ws.onmessage = () => {
-    console.log(ws.data);
+    let res = ws.data;
+    res = JSON.parse(res);
+    if (res.status) {
+      resolveMessage();
+    }
   }
   addEventListenerList(links, "click", function(target){
     let link = target.target.innerHTML.trim()
