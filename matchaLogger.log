@@ -1,6 +1,3 @@
-Matcha matcha.go:18: 2019-01-14 15:42:28.120701748 +0200 SAST m=+0.001782501
-Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc420144000 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc420148000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:18: 2019-01-14 17:40:21.873174889 +0200 SAST m=+0.001952991
+Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc420152000 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc420156000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:25: Starting 'Matcha' dating service API
-Matcha user.go:68: Attempting to update user_no:  ObjectIdHex("5c3c603f2174c775998be475")
-Matcha socket.go:102: Managed to get the component from the views package
-Matcha socket.go:124: Successully updated user_no:  ObjectIdHex("5c3c603f2174c775998be475")

@@ -15,11 +15,10 @@ submit.onclick = function() {
     "pform": {
       "fname": form.elements[0].value,
       "lname": form.elements[1].value,
-      "uname": form.elements[2].value,
-      "email": form.elements[3].value,
-      "gender": form.elements[4].selectedOptions[0].value,
-      "orientation": form.elements[5].selectedOptions[0].value,
-      "interests": form.elements[6].value.split(" ")
+      "email": form.elements[2].value,
+      "gender": form.elements[3].selectedOptions[0].value,
+      "orientation": form.elements[4].selectedOptions[0].value,
+      "interests": form.elements[5].value.split(" ")
     }
   }
   let subs = JSON.stringify(submission);
@@ -37,21 +36,16 @@ function resolveMessage() {
       if (submission["pform"]["lname"] != "" && submission["pform"]["lname"].length > 0) {
         form.elements[1].placeholder = submission["pform"]["lname"];
       }
-      if (submission["pform"]["uname"] != "" && submission["pform"]["uname"].length > 0) {
-        form.elements[2].placeholder = submission["pform"]["uname"];
-        let panel = document.querySelector("nav.panel").firstElementChild;
-        panel.innerText = "Welcome " + submission["pform"]["uname"];
-      }
       if (submission["pform"]["email"] != "" && submission["pform"]["email"].length > 0) {
         form.elements[3].placeholder = submission["pform"]["email"];
       }
       if (submission["pform"]["gender"] != "" && submission["pform"]["gender"].length > 0) {
-        let gender = document.getElementById("genderSub");
-        gender.innerText = submission["pform"]["gender"]
+        let gender = document.getElementById("sexTitle");
+        gender.innerText = submission["pform"]["gender"];
       }
       if (submission["pform"]["orientation"] != "" && submission["pform"]["orientation"].length > 0) {
-        let orientation = document.getElementById("orientationSub");
-        orientation.innerText = submission["pform"]["orientation"]
+        let orientation = document.getElementById("orientationTitle");
+        orientation.innerText = submission["pform"]["orientation"];
       }
       if (submission["pform"]["interests"] > 0 && submission["pform"]["interests"][0] != "") {
         form.elements[6].innerText = submission["pform"]["interests"];

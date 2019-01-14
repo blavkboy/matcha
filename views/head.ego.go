@@ -2,7 +2,6 @@
 // DO NOT EDIT
 
 //line views/head.ego:1
-
 package views
 
 import "fmt"
@@ -15,13 +14,11 @@ func produceHead(w io.Writer, style func(w io.Writer), script func(w io.Writer))
 //line views/head.ego:6
 	_, _ = io.WriteString(w, "\n<meta charset=\"utf-8\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n<meta name=\"description\" content=\"a dating app\">\n<meta name=\"author\" content=\"blavkboy\">\n<title>My Site</title>\n\n<link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/bulma.min.css\">\n<link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/animate.css\">\n")
 //line views/head.ego:16
-
 	style(w)
 
 //line views/head.ego:19
 	_, _ = io.WriteString(w, "\n\n<script defer src=\"http://localhost:8080/static/js/all.js\"></script>\n")
 //line views/head.ego:21
-
 	script(w)
 
 //line views/head.ego:24

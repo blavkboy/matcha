@@ -29,7 +29,6 @@ type Connection struct {
 type ProfileForm struct {
 	Fname       string   `json:"fname"`
 	Lname       string   `json:"lname"`
-	Uname       string   `json:"uname"`
 	Email       string   `json:"email"`
 	Gender      string   `json:"gender"`
 	Orientation string   `json:"orientation"`

@@ -33,9 +33,14 @@ window.onload = async function() {
     //  resolveMessage();
     //}
     var msg = JSON.parse(message);
-    var component = document.getElementById(msg.column);
-    component.innerHTML = msg.component;
+    console.log(msg.column);
+    executeComponent(msg.column);
     console.log("function closed");
+  }
+  function executeComponent(column) {
+    if (column == "rightColumn") {
+      resolveMessage();
+    }
   }
   addEventListenerList(links, "click", function(target){
     let link = target.target.innerHTML.trim()
