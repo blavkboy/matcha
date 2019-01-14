@@ -74,10 +74,10 @@ func RenderProfileColumn(w io.Writer, u *models.User) {
                 <option><% fmt.Fprint(w, val) %></option>
             <% } %>
             </select>
-            <p class="subtitle is-5" id="sexTitle"><% fmt.Fprint(w, u.Sex) %></p>
           </div>
         </div>
       </div>
+      <p class="subtitle is-5" id="sexTitle"><% fmt.Fprint(w, u.Sex) %></p>
       
       <div class="field">
         <label class="label">Who are interested in meeting?</label>
@@ -92,10 +92,10 @@ func RenderProfileColumn(w io.Writer, u *models.User) {
                   <option><% fmt.Fprint(w, val) %></option>
               <% } %>
             </select>
-            <p class="subtitle is-5" id="orientationTitle"><% fmt.Fprint(w, u.Profile.Orientation) %></p>
           </div>
         </div>
       </div>
+      <p class="subtitle is-5" id="orientationTitle"><% fmt.Fprint(w, u.Profile.Orientation) %></p>
       
       <div class="field">
         <label class="label">Interests</label>

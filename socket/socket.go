@@ -1,11 +1,15 @@
 package socket
 
 import (
+	"bufio"
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"strings"
 
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/models"
+	"github.com/blavkboy/matcha/views/components"
 	"github.com/gorilla/websocket"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -41,6 +45,12 @@ type MessageReader struct {
 	Pform       ProfileForm    `json:"pform"`
 }
 
+type Response struct {
+	Status    string `json:"status"`
+	Column    string `json:"column"`
+	Component string `json:"component"`
+}
+
 var UserConnections = make(map[bson.ObjectId]Connection)
 
 var Upgrader = websocket.Upgrader{
@@ -56,7 +66,7 @@ func HandleMessage(msg *MessageReader) {
 	}
 }
 
-func (msg *MessageReader) HandleCommand(res *string, u *models.User) {
+func (msg *MessageReader) HandleCommand(connection *Connection, u *models.User) {
 	mlogger := mlogger.GetInstance()
 	if msg.CommandType == "profile" {
 		if msg.Pform.Lname != "" {
@@ -81,24 +91,43 @@ func (msg *MessageReader) HandleCommand(res *string, u *models.User) {
 	if err != nil {
 		fmt.Println("Error updating user: ", err)
 		mlogger.Println("Error updating user: ", err)
-		*res = "{\"status\": false}"
 	} else {
+		var b bytes.Buffer
+		foo := bufio.NewWriter(&b)
+		components.RenderProfileColumn(&b, u)
+		err = foo.Flush()
+		if err != nil {
+			mlogger.Println("Error flushing contents: ", err)
+		} else {
+			mlogger.Println("Managed to get the component from the views package")
+			resp := new(Response)
+			resp.Status = "success"
+			resp.Column = msg.Component
+			resp.Component = b.String()
+			fmt.Println(resp)
+			buf, err := json.Marshal(resp)
+			if err != nil {
+				fmt.Println("Error marshalling struct into a json string: ", err)
+				mlogger.Println("Error marshalling struct into a json string: ", err)
+			}
+			err = connection.Connection.WriteMessage(websocket.TextMessage, buf)
+			if err != nil {
+				mlogger.Println("Error writing to the connection: ", err)
+				fmt.Println("Error: ", err)
+			}
+			if err != nil {
+				mlogger.Println("Error closing io.Writer: ", err)
+				fmt.Println("Error closing io.Writer: ", err)
+			}
+		}
 		fmt.Println("Success")
 		mlogger.Println("Successully updated user_no: ", u.ID)
-		*res = "{\"status\": true}"
 	}
 }
 
-func (msg *MessageReader) EvalMsg(res *string, user *models.User, connection *Connection) {
-	mlogger := mlogger.GetInstance()
-	*res = ""
+func (msg *MessageReader) EvalMsg(user *models.User, connection *Connection) {
 	switch msg.Type {
 	case "command":
-		msg.HandleCommand(res, user)
-		err := connection.Connection.WriteMessage(websocket.TextMessage, []byte(*res))
-		if err != nil {
-			mlogger.Println("Error writing message to connection: ", err)
-			return
-		}
+		msg.HandleCommand(connection, user)
 	}
 }

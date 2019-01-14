@@ -106,7 +106,6 @@ func SocketConn(w http.ResponseWriter, r *http.Request) {
 		Connection: conn,
 	}
 	socket.UserConnections[user.ID] = connection
-	var res string
 	for {
 		fmt.Println("Got connection")
 		messageType, p, err := connection.Connection.ReadMessage()
@@ -127,7 +126,7 @@ func SocketConn(w http.ResponseWriter, r *http.Request) {
 				continue
 			}
 			fmt.Println(msg)
-			msg.EvalMsg(&res, user, &connection)
+			msg.EvalMsg(user, &connection)
 		}
 	}
 }

@@ -2,7 +2,6 @@
 // DO NOT EDIT
 
 //line views/components/profileColumn.ego:1
-
 package components
 
 import "fmt"
@@ -55,7 +54,6 @@ func RenderProfileColumn(w io.Writer, u *models.User) {
 //line views/components/profileColumn.ego:70
 	_, _ = io.WriteString(w, ">\n            ")
 //line views/components/profileColumn.ego:71
-
 	sex := [4]string{"Select", "Male", "Female", "Other"}
 	for _, val := range sex {
 //line views/components/profileColumn.ego:74
@@ -67,11 +65,11 @@ func RenderProfileColumn(w io.Writer, u *models.User) {
 //line views/components/profileColumn.ego:75
 	}
 //line views/components/profileColumn.ego:76
-	_, _ = io.WriteString(w, "\n            </select>\n            <p class=\"subtitle is-5\" id=\"sexTitle\">")
-//line views/components/profileColumn.ego:77
+	_, _ = io.WriteString(w, "\n            </select>\n          </div>\n        </div>\n      </div>\n      <p class=\"subtitle is-5\" id=\"sexTitle\">")
+//line views/components/profileColumn.ego:80
 	fmt.Fprint(w, u.Sex)
-//line views/components/profileColumn.ego:77
-	_, _ = io.WriteString(w, "</p>\n          </div>\n        </div>\n      </div>\n      \n      <div class=\"field\">\n        <label class=\"label\">Who are interested in meeting?</label>\n        <div class=\"control\">\n          <div class=\"select\">\n            <select id=\"orientation\" ")
+//line views/components/profileColumn.ego:80
+	_, _ = io.WriteString(w, "</p>\n      \n      <div class=\"field\">\n        <label class=\"label\">Who are interested in meeting?</label>\n        <div class=\"control\">\n          <div class=\"select\">\n            <select id=\"orientation\" ")
 //line views/components/profileColumn.ego:86
 	if u.Profile.Orientation == "" {
 		fmt.Fprint(w, "required")
@@ -79,7 +77,6 @@ func RenderProfileColumn(w io.Writer, u *models.User) {
 //line views/components/profileColumn.ego:88
 	_, _ = io.WriteString(w, ">\n              ")
 //line views/components/profileColumn.ego:89
-
 	orientation := [4]string{"Select", "Men", "Women", "Both"}
 	for _, val := range orientation {
 //line views/components/profileColumn.ego:92
@@ -91,11 +88,11 @@ func RenderProfileColumn(w io.Writer, u *models.User) {
 //line views/components/profileColumn.ego:93
 	}
 //line views/components/profileColumn.ego:94
-	_, _ = io.WriteString(w, "\n            </select>\n            <p class=\"subtitle is-5\" id=\"orientationTitle\">")
-//line views/components/profileColumn.ego:95
+	_, _ = io.WriteString(w, "\n            </select>\n          </div>\n        </div>\n      </div>\n      <p class=\"subtitle is-5\" id=\"orientationTitle\">")
+//line views/components/profileColumn.ego:98
 	fmt.Fprint(w, u.Profile.Orientation)
-//line views/components/profileColumn.ego:95
-	_, _ = io.WriteString(w, "</p>\n          </div>\n        </div>\n      </div>\n      \n      <div class=\"field\">\n        <label class=\"label\">Interests</label>\n        <div class=\"control\">\n          <textarea class=\"textarea is-medium\" placeholder=\"Enter your interests in here like you would a series of twitter hash tags\"></textarea>\n        </div>\n      </div>\n      <div class=\"buttons\">\n        <span class=\"button is-success\" id=\"submit\">Submit Changes</span>\n        <span class=\"button is-success\" id=\"pwChange\">Change Password</span>\n      </div>\n    </div>\n  </form>\n  <!-- home component -->\n</div>\n<script type=\"text/javascript\" src=\"/static/js/profileSelect.js\"></script>\n")
+//line views/components/profileColumn.ego:98
+	_, _ = io.WriteString(w, "</p>\n      \n      <div class=\"field\">\n        <label class=\"label\">Interests</label>\n        <div class=\"control\">\n          <textarea class=\"textarea is-medium\" placeholder=\"Enter your interests in here like you would a series of twitter hash tags\"></textarea>\n        </div>\n      </div>\n      <div class=\"buttons\">\n        <span class=\"button is-success\" id=\"submit\">Submit Changes</span>\n        <span class=\"button is-success\" id=\"pwChange\">Change Password</span>\n      </div>\n    </div>\n  </form>\n  <!-- home component -->\n</div>\n<script type=\"text/javascript\" src=\"/static/js/profileSelect.js\"></script>\n")
 //line views/components/profileColumn.ego:115
 }
 

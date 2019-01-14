@@ -2,7 +2,6 @@
 // DO NOT EDIT
 
 //line views/components/registerModal.ego:1
-
 package components
 
 import "fmt"

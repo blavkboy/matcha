@@ -11,6 +11,7 @@ submit.onclick = function() {
   submission = {
     "type": "command",
     "commandType": "profile",
+    "component": "rightColumn",
     "pform": {
       "fname": form.elements[0].value,
       "lname": form.elements[1].value,
@@ -69,6 +70,6 @@ picsubmit.onclick = function() {
     "commandType": "propic",
     "command": reader.result
   }
-  let subs = JSON.stringify(submission);
+  var subs = JSON.stringify(submission);
   ws.send(subs);
 }

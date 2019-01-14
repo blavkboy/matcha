@@ -1,3 +1,4 @@
+var message;
 var ws;
 window.onload = async function() {
   //update geolocation
@@ -24,12 +25,17 @@ window.onload = async function() {
   ws.onopen = () => {
     ws.send("Connection opened from this side")
   }
-  ws.onmessage = () => {
-    let res = ws.data;
-    res = JSON.parse(res);
-    if (res.status) {
-      resolveMessage();
-    }
+  ws.onmessage = function(event) {
+    console.log("Got here!");
+    message = event.data;
+    //res = JSON.parse(res);
+    //if (res.status) {
+    //  resolveMessage();
+    //}
+    var msg = JSON.parse(message);
+    var component = document.getElementById(msg.column);
+    component.innerHTML = msg.component;
+    console.log("function closed");
   }
   addEventListenerList(links, "click", function(target){
     let link = target.target.innerHTML.trim()
