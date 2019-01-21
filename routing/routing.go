@@ -97,6 +97,9 @@ func HandleUsers(w http.ResponseWriter, r *http.Request) {
 
 func HandleCheck(w http.ResponseWriter, r *http.Request) {
 	if strings.Compare(r.Method, "GET") == 0 {
+		fmt.Println("Got Here")
+		fmt.Println(r.Header)
+		w.Header().Set("Content-Type", "application/json")
 		mlogger := mlogger.GetInstance()
 		user := auth.GetCurrentUser(r)
 		if user == nil {
