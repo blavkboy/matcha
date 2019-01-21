@@ -60,6 +60,7 @@ func NewUser(user *User) *User {
 	}
 	mlogger.Println("Inserting User")
 	user = FindUser("username", user.Username)
+	user.Password = ""
 	return user
 }
 

@@ -9,11 +9,15 @@ import (
 	"github.com/blavkboy/matcha/mlogger"
 	"github.com/blavkboy/matcha/routing"
 	"github.com/blavkboy/matcha/services/auth"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
 //In main we will handle all requests to the server
 func main() {
+	allowedHeaders := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})
+	allowedOrigins := handlers.AllowedOrigins([]string{"*"})
+	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})
 	mlogger := mlogger.GetInstance()
 	mlogger.Println(time.Now())
 	err, conn := database.InitDB()
@@ -26,13 +30,10 @@ func main() {
 	r := mux.NewRouter()
 
 	//Register users to the users collectioon in the matcha database
-	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
-	r.HandleFunc("/ws/{token}", routing.SocketConn)
-	r.HandleFunc("/users/login", auth.NewToken(routing.HandleLogin)).Methods("POST")
-	r.HandleFunc("/users/check", auth.ConfirmUser(routing.HandleCheck)).Methods("GET")
-	r.HandleFunc("/users", routing.HandleUser).Methods("POST")
-	r.HandleFunc("/users", auth.NewToken(routing.HandleUsers)).Methods("GET")
-	r.HandleFunc("/home", routing.HandleHome).Methods("GET")
-	r.HandleFunc("/", routing.HandleRoot).Methods("GET")
-	http.ListenAndServe(":8080", r)
+	//rebasing this code to make an api for the front end
+	//r.HandleFunc("/ws/{token}", routing.SocketConn)
+	r.HandleFunc("/users/login", auth.NewToken).Methods("POST")
+	r.HandleFunc("/user", routing.HandleUser).Methods("POST")
+	r.HandleFunc("/users/check", routing.HandleCheck).Methods("GET")
+	http.ListenAndServe(":4040", handlers.CORS(allowedHeaders, allowedMethods, allowedOrigins)(r))
 }
