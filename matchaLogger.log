@@ -1,7 +1,199 @@
-Matcha matcha.go:22: 2019-01-21 17:29:10.017089157 +0200 SAST m=+0.003500097
-Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc000112100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc00011a000 60000000000 60000000000 test admin <nil> [] 4096 false}
+Matcha matcha.go:22: 2019-01-22 00:03:30.137993603 +0200 SAST m=+0.167692222
+Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc000112100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc00011e000 60000000000 60000000000 test admin <nil> [] 4096 false}
 Matcha matcha.go:29: Starting 'Matcha' dating service API
-Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c458047b3ddb1177526abb420686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
-Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c458047b3ddb1177526abb420686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
-Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c458047b3ddb1177526abb420686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
-Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c458047b3ddb1177526abb420686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:102: Error parsing jwt string:  token contains an invalid number of segments
+Matcha auth.go:38: Password match for user:  true
+Matcha auth.go:45: DEBUG INFO user_id:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha auth.go:38: Password match for user:  true
+Matcha auth.go:45: DEBUG INFO user_id:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha auth.go:38: Password match for user:  true
+Matcha auth.go:45: DEBUG INFO user_id:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:109: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
