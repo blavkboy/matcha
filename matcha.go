@@ -33,7 +33,7 @@ func main() {
 	//rebasing this code to make an api for the front end
 	//r.HandleFunc("/ws/{token}", routing.SocketConn)
 	r.HandleFunc("/users/login", auth.NewToken).Methods("POST")
-	r.HandleFunc("/user", routing.HandleUser).Methods("POST")
+	r.HandleFunc("/user", routing.HandleUser).Methods("POST", "GET")
 	r.HandleFunc("/users/check", routing.HandleCheck).Methods("GET")
 	http.ListenAndServe(":4040", handlers.CORS(allowedHeaders, allowedMethods, allowedOrigins)(r))
 }

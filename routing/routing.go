@@ -51,8 +51,8 @@ func checkReg(body models.User) bool {
 //we can abstract some of it to make the login method and let the user
 //keep his/her state using the token
 func HandleUser(w http.ResponseWriter, r *http.Request) {
+	mlogger := mlogger.GetInstance()
 	if strings.Compare(r.Method, "POST") == 0 {
-		mlogger := mlogger.GetInstance()
 		//we process get request and return either the selected user or
 		//all the users
 		//Todo: refine search capabilities and make this more efficient
@@ -88,6 +88,21 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("{\"success\": true}"))
 		mlogger.Println(time.Now())
 		mlogger.Println(body)
+	} else {
+		token := r.Header.Get("Authorization")
+		user := auth.GetUserFromString(token)
+		if user == nil {
+			w.Write([]byte("{\"success\": false}"))
+			return
+		}
+		user.Password = ""
+		e, err := json.Marshal(user)
+		if err != nil {
+			w.Write([]byte("{\"success\": false}"))
+			mlogger.Println("Error unmarshalling user data: ", err)
+			return
+		}
+		w.Write(e)
 	}
 }
 
