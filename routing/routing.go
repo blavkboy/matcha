@@ -102,6 +102,7 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 			mlogger.Println("Error unmarshalling user data: ", err)
 			return
 		}
+		fmt.Println(string(e))
 		w.Write(e)
 	}
 }
