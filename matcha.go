@@ -32,6 +32,7 @@ func main() {
 	//Register users to the users collectioon in the matcha database
 	//rebasing this code to make an api for the front end
 	//r.HandleFunc("/ws/{token}", routing.SocketConn)
+	r.HandleFunc("/users/update", routing.HandleUpdate).Methods("POST")
 	r.HandleFunc("/users/login", auth.NewToken).Methods("POST")
 	r.HandleFunc("/user", routing.HandleUser).Methods("POST", "GET")
 	r.HandleFunc("/users/check", routing.HandleCheck).Methods("GET")

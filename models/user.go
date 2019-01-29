@@ -1,6 +1,8 @@
 package models
 
 import (
+	"strings"
+
 	"github.com/blavkboy/matcha/database"
 	"github.com/blavkboy/matcha/mlogger"
 	mgo "gopkg.in/mgo.v2"
@@ -62,6 +64,56 @@ func NewUser(user *User) *User {
 	user = FindUser("username", user.Username)
 	user.Password = ""
 	return user
+}
+
+//CheckUpdate will be used to check if the another user exists with matching
+//credentials namely the username and email if those two are checked and values
+//that were already filled in are not set to an empty string then the method
+//will return true otherwise a false value is returned
+func (user *User) CheckUpdate(updatedUser User) bool {
+	if updatedUser.Username == "" || strings.Compare(updatedUser.Username, user.Username) != 0 {
+		if strings.Compare(updatedUser.Username, user.Username) != 0 {
+			if FindUser("username", updatedUser.Username) != nil {
+				return false
+			} else {
+				return false
+			}
+		}
+	} else if updatedUser.Fname == "" && user.Fname != "" {
+		return false
+	} else if updatedUser.Lname == "" && user.Lname != "" {
+		return false
+	} else if updatedUser.Sex == "" && user.Sex != "" {
+		return false
+	} else if updatedUser.Profile.Orientation == "" && user.Profile.Orientation != "" {
+		return false
+	} else if updatedUser.Profile.Confirmed == false && user.Profile.Confirmed == true {
+		return false
+	}
+	return true
+}
+
+func (user *User) UpdateDiff(update User) {
+	if strings.Compare(user.Username, update.Username) != 0 {
+		user.Username = update.Username
+	}
+	if strings.Compare(user.Fname, update.Fname) != 0 {
+		user.Fname = update.Fname
+	}
+	if strings.Compare(user.Lname, update.Lname) != 0 {
+		user.Lname = update.Lname
+	}
+	if strings.Compare(user.Sex, update.Sex) != 0 {
+		user.Sex = update.Sex
+	}
+	if strings.Compare(user.Profile.Orientation, update.Profile.Orientation) != 0 {
+		user.Profile.Orientation = update.Profile.Orientation
+	}
+	user.Profile.Propic = update.Profile.Propic
+	user.Location.Coordinates = update.Location.Coordinates
+	user.Profile.Images = update.Profile.Images
+	user.Profile.Interests = update.Profile.Interests
+	user.UpdateUser()
 }
 
 func (user *User) UpdateUser() error {

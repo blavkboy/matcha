@@ -132,6 +132,25 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	views.RenderHome(w, auth.GetCurrentUser(r))
 }
 
+func HandleUpdate(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	token := r.Header.Get("Authorization")
+	user := auth.GetUserFromString(token)
+	if user == nil {
+		w.Write([]byte("{\"success\": false}"))
+		return
+	}
+	var updatedUser models.User
+	json.NewDecoder(r.Body).Decode(&updatedUser)
+	if user.CheckUpdate(updatedUser) == false {
+		w.Write([]byte("{\"success\": false}"))
+	} else {
+		user.UpdateDiff(updatedUser)
+		user.Password = ""
+		json.NewEncoder(w).Encode(user)
+	}
+}
+
 func SocketConn(w http.ResponseWriter, r *http.Request) {
 	var start int = 0
 	mlogger := mlogger.GetInstance()
