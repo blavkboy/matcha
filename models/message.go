@@ -3,8 +3,8 @@ package models
 import (
 	"fmt"
 
-	"github.com/blavkboy/matcha/database"
-	"github.com/blavkboy/matcha/mlogger"
+	"github.com/gmohlamo/matcha/database"
+	"github.com/gmohlamo/matcha/mlogger"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )

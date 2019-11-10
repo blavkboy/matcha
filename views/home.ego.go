@@ -9,9 +9,9 @@ import "html"
 import "io"
 import "context"
 
-import "github.com/blavkboy/matcha/views/components/headers"
-import "github.com/blavkboy/matcha/views/components"
-import "github.com/blavkboy/matcha/models"
+import "github.com/gmohlamo/matcha/views/components/headers"
+import "github.com/gmohlamo/matcha/views/components"
+import "github.com/gmohlamo/matcha/models"
 
 func RenderHome(w io.Writer, u *models.User) {
 

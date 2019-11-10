@@ -9,7 +9,7 @@ import "html"
 import "io"
 import "context"
 
-import "github.com/blavkboy/matcha/models"
+import "github.com/gmohlamo/matcha/models"
 import "strings"
 
 func HomeNavbar(w io.Writer, u *models.User) {

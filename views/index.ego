@@ -2,8 +2,8 @@
 package views
 
 import (
-    "github.com/blavkboy/matcha/views/components"
-    "github.com/blavkboy/matcha/views/components/headers"
+    "github.com/gmohlamo/matcha/views/components"
+    "github.com/gmohlamo/matcha/views/components/headers"
 )
 
 func RenderIndex(w io.Writer) {

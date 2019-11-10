@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/blavkboy/matcha/mlogger"
-	"github.com/blavkboy/matcha/models"
-	"github.com/blavkboy/matcha/views/components"
+	"github.com/gmohlamo/matcha/mlogger"
+	"github.com/gmohlamo/matcha/models"
+	"github.com/gmohlamo/matcha/views/components"
 	"github.com/gorilla/websocket"
 	"gopkg.in/mgo.v2/bson"
 )

@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/blavkboy/matcha/mlogger"
-	"github.com/blavkboy/matcha/models"
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/gmohlamo/matcha/mlogger"
+	"github.com/gmohlamo/matcha/models"
 	"golang.org/x/crypto/bcrypt"
 )
 

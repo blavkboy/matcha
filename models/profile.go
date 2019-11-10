@@ -9,4 +9,6 @@ type Profile struct {
 	Images      []string `json:"images" bson:"images"`
 	Orientation string   `json:"orientation" bson:"orientation"`
 	Interests   []string `json:"interests" bson:"interests"`
+	Range       int64    `json:"range" bson:"range"`
+	Index       int64    `Json:"index" bson:"index"`
 }

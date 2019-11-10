@@ -8,12 +8,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/blavkboy/matcha/mlogger"
-	"github.com/blavkboy/matcha/models"
-	"github.com/blavkboy/matcha/services/auth"
-	"github.com/blavkboy/matcha/services/validation"
-	"github.com/blavkboy/matcha/socket"
-	"github.com/blavkboy/matcha/views"
+	"github.com/gmohlamo/matcha/mlogger"
+	"github.com/gmohlamo/matcha/models"
+	"github.com/gmohlamo/matcha/services/auth"
+	"github.com/gmohlamo/matcha/services/validation"
+	"github.com/gmohlamo/matcha/socket"
+	"github.com/gmohlamo/matcha/views"
 	"github.com/gorilla/websocket"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -27,6 +27,47 @@ func HandleRoot(w http.ResponseWriter, r *http.Request) {
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	//something todo later
+}
+
+func HandleLikes(w http.ResponseWriter, r *http.Request) {
+	token := r.Header.Get("Authorization")
+	user := auth.GetUserFromString(token)
+	if user == nil {
+		w.Write([]byte("{\"success\": false}"))
+		return
+	}
+	decoder := json.NewDecoder(r.Body)
+	var like models.Like
+	err := decoder.Decode(&like)
+	if err != nil {
+		w.Write([]byte("{\"success\": false}"))
+		return
+	}
+	if like.Uid == user.ID {
+		if models.AddLike(&like) {
+			w.Write([]byte("{\"success\": true}"))
+			return
+		}
+	}
+	w.Write([]byte("\"success\": false"))
+}
+
+func HandleMatches(w http.ResponseWriter, r *http.Request) {
+	mlogger := mlogger.GetInstance()
+	w.Header().Set("Content-Type", "application/json")
+	if strings.Compare(r.Method, "GET") == 0 {
+		mlogger.Println("Sending user: ")
+		token := r.Header.Get("Authorization")
+		user := auth.GetUserFromString(token)
+		if user == nil {
+			w.Write([]byte("{\"success\": false}"))
+			return
+		}
+		models.FindMatch(user, w)
+	} else {
+		mlogger.Println("Got the right method")
+		w.Write([]byte("{\"success\": false}"))
+	}
 }
 
 func checkReg(body models.User) bool {
@@ -102,7 +143,7 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 			mlogger.Println("Error unmarshalling user data: ", err)
 			return
 		}
-		fmt.Println(string(e))
+		//fmt.Println(string(e))
 		w.Write(e)
 	}
 }

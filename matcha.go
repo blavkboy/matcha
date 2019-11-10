@@ -5,10 +5,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/blavkboy/matcha/database"
-	"github.com/blavkboy/matcha/mlogger"
-	"github.com/blavkboy/matcha/routing"
-	"github.com/blavkboy/matcha/services/auth"
+	"github.com/gmohlamo/matcha/database"
+	"github.com/gmohlamo/matcha/mlogger"
+	"github.com/gmohlamo/matcha/routing"
+	"github.com/gmohlamo/matcha/services/auth"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
@@ -36,5 +36,7 @@ func main() {
 	r.HandleFunc("/users/login", auth.NewToken).Methods("POST")
 	r.HandleFunc("/user", routing.HandleUser).Methods("POST", "GET")
 	r.HandleFunc("/users/check", routing.HandleCheck).Methods("GET")
+	r.HandleFunc("/users/matches", routing.HandleMatches).Methods("GET")
+	r.HandleFunc("/users/matches/like", routing.HandleLikes).Methods("POST")
 	http.ListenAndServe(":4040", handlers.CORS(allowedHeaders, allowedMethods, allowedOrigins)(r))
 }

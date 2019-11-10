@@ -1,16 +1,25 @@
-Matcha matcha.go:22: 2019-01-29 12:02:23.605261073 +0200 SAST m=+0.003242802
-Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc000110100 <nil> <nil> true 1 {{ <nil> 0 0 <nil> 0 <nil> 0 {<nil> <nil> <nil> false false [] 0 0 } false []} 0.25 0} 0xc000116000 60000000000 60000000000 test admin <nil> [] 4096 false}
-Matcha matcha.go:29: Starting 'Matcha' dating service API
-Matcha routing.go:125: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
-Matcha user.go:121: Attempting to update user_no:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
-Matcha user.go:121: Attempting to update user_no:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
-Matcha user.go:121: Attempting to update user_no:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
-Matcha user.go:121: Attempting to update user_no:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
-Matcha user.go:121: Attempting to update user_no:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
-Matcha user.go:121: Attempting to update user_no:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
-Matcha user.go:121: Attempting to update user_no:  ObjectIdHex("5c4622dcb3ddb10c49e3ec50")
-Matcha routing.go:125: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
-Matcha routing.go:125: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
-Matcha routing.go:125: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
-Matcha routing.go:125: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
-Matcha routing.go:125: ObjectIdHex("55736572206e6f3a205c4622dcb3ddb10c49e3ec5020686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc0000fe000 <nilMatcha matcha.go:29: Starting 'Matcha' dating service API
+Matcha routing.go:166: ObjectIdHex("55736572206e6f3a205dbfcd2668238c12895d4f4820686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:59: Sending user: 
+Matcha user.go:174: Sending:
+%+v
+Objects sent to client [{ObjectIdHex("5dc2c7e746753b1d09a0fa29") babez   Female   {Point [27.35 -26.35]} {false 0 3 0  [] heterosexual [#coolThings #theMatrix] 0 0}} {ObjectIdHex("5dc2cbeb46753b1d09a0fa2b") H3r$elf   Female   {Point [24.73 -24.73]} {false 0 1 0  [] heterosexual [#coolRunnings] 0 0}} {ObjectIdHex("5dc2ccbf46753b1d09a0fa2c") niiiiiiiiidU   Female   {Point [24.74 -28.73]} {false 0 0 0  [] heterosexual [#tamagochi #420] 0 0}}]
+Matcha like.go:51: Processing like -->  &{ObjectIdHex("") ObjectIdHex("5dbfcd2668238c12895d4f48") ObjectIdHex("5dc2c7e746753b1d09a0fa29")}
+Matcha like.go:58: User has already liked this other user
+Matcha routing.go:59: Sending user: 
+Matcha user.go:174: Sending:
+%+v
+Objects sent to client [{ObjectIdHex("5dc2c7e746753b1d09a0fa29") babez   Female   {Point [27.35 -26.35]} {false 0 3 0  [] heterosexual [#coolThings #theMatrix] 0 0}} {ObjectIdHex("5dc2cbeb46753b1d09a0fa2b") H3r$elf   Female   {Point [24.73 -24.73]} {false 0 1 0  [] heterosexual [#coolRunnings] 0 0}} {ObjectIdHex("5dc2ccbf46753b1d09a0fa2c") niiiiiiiiidU   Female   {Point [24.74 -28.73]} {false 0 0 0  [] heterosexual [#tamagochi #420] 0 0}}]
+Matcha like.go:51: Processing like -->  &{ObjectIdHex("") ObjectIdHex("5dbfcd2668238c12895d4f48") ObjectIdHex("5dc2c7e746753b1d09a0fa29")}
+Matcha like.go:58: User has already liked this other user
+Matcha like.go:51: Processing like -->  &{ObjectIdHex("") ObjectIdHex("5dbfcd2668238c12895d4f48") ObjectIdHex("5dc2c7e746753b1d09a0fa29")}
+Matcha like.go:58: User has already liked this other user
+Matcha routing.go:166: ObjectIdHex("55736572206e6f3a205dbfcd2668238c12895d4f4820686173206c6f6767656420696e746f20746865204d617463686120736572766963652e")
+Matcha routing.go:59: Sending user: 
+Matcha user.go:174: Sending:
+%+v
+Objects sent to client [{ObjectIdHex("5dc2c7e746753b1d09a0fa29") babez   Female   {Point [27.35 -26.35]} {false 0 3 0  [] heterosexual [#coolThings #theMatrix] 0 0}} {ObjectIdHex("5dc2cbeb46753b1d09a0fa2b") H3r$elf   Female   {Point [24.73 -24.73]} {false 0 1 0  [] heterosexual [#coolRunnings] 0 0}} {ObjectIdHex("5dc2ccbf46753b1d09a0fa2c") niiiiiiiiidU   Female   {Point [24.74 -28.73]} {false 0 0 0  [] heterosexual [#tamagochi #420] 0 0}}]
+Matcha like.go:51: Processing like -->  &{ObjectIdHex("") ObjectIdHex("5dbfcd2668238c12895d4f48") ObjectIdHex("5dc2c7e746753b1d09a0fa29")}
+Matcha like.go:58: User has already liked this other user
+Matcha like.go:51: Processing like -->  &{ObjectIdHex("") ObjectIdHex("5dbfcd2668238c12895d4f48") ObjectIdHex("5dc2cbeb46753b1d09a0fa2b")}
+Matcha like.go:51: Processing like -->  &{ObjectIdHex("") ObjectIdHex("5dbfcd2668238c12895d4f48") ObjectIdHex("5dc2ccbf46753b1d09a0fa2c")}

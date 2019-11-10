@@ -1,12 +1,13 @@
 package models
 
 import (
-	"strings"
-
-	"github.com/blavkboy/matcha/database"
-	"github.com/blavkboy/matcha/mlogger"
+	"encoding/json"
+	"github.com/gmohlamo/matcha/database"
+	"github.com/gmohlamo/matcha/mlogger"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"net/http"
+	"strings"
 )
 
 //The user file here will deal with all structures and
@@ -142,4 +143,34 @@ func FindUser(key string, value interface{}) *User {
 		return nil
 	}
 	return (body)
+}
+
+func FindMatch(user *User, w http.ResponseWriter) {
+	var users []User
+	mlogger := mlogger.GetInstance()
+	client := database.GetInstance()
+	defer client.Close()
+	c := client.DB("matcha").C("users")
+	err := c.Find(bson.M{"Location": bson.M{
+		"$near": bson.M{
+			"$geometry": bson.M{
+				"type":        "Point",
+				"coordinates": user.Location.Coordinates,
+			},
+			"$maxDistance": 500000,
+		},
+	},
+	}).Select(bson.M{"username": 1, "Location": 1,
+		"profile": 1,
+		"sex":     1}).Skip(int(user.Profile.Index)).Limit(4).All(&users)
+	if err != nil {
+		mlogger.Println("Failed to obtain users")
+		mlogger.Println("Error: ", err)
+		return
+	} else {
+		users = filterUsers(user, users)
+		mJson, _ := json.Marshal(users)
+		w.Write(mJson)
+		mlogger.Println("Sending:\n%+v\nObjects sent to client", users)
+	}
 }
