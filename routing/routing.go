@@ -30,8 +30,8 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleLikes(w http.ResponseWriter, r *http.Request) {
-	token := r.Header.Get("Authorization")
-	user := auth.GetUserFromString(token)
+	session := auth.GetSession(r)
+	user := models.FindUser("username", session.Values["user"])
 	if user == nil {
 		w.Write([]byte("{\"success\": false}"))
 		return
@@ -57,8 +57,8 @@ func HandleMatches(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	if strings.Compare(r.Method, "GET") == 0 {
 		mlogger.Println("Sending user: ")
-		token := r.Header.Get("Authorization")
-		user := auth.GetUserFromString(token)
+		session := auth.GetSession(r)
+		user := models.FindUser("username", session.Values["user"])
 		if user == nil {
 			w.Write([]byte("{\"success\": false}"))
 			return
@@ -130,21 +130,7 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 		mlogger.Println(time.Now())
 		mlogger.Println(body)
 	} else {
-		token := r.Header.Get("Authorization")
-		user := auth.GetUserFromString(token)
-		if user == nil {
-			w.Write([]byte("{\"success\": false}"))
-			return
-		}
-		user.Password = ""
-		e, err := json.Marshal(user)
-		if err != nil {
-			w.Write([]byte("{\"success\": false}"))
-			mlogger.Println("Error unmarshalling user data: ", err)
-			return
-		}
-		//fmt.Println(string(e))
-		w.Write(e)
+		auth.Login(w, r)
 	}
 }
 
@@ -175,8 +161,8 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 
 func HandleUpdate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	token := r.Header.Get("Authorization")
-	user := auth.GetUserFromString(token)
+	session := auth.GetSession(r)
+	user := models.FindUser("username", session.Values["user"])
 	if user == nil {
 		w.Write([]byte("{\"success\": false}"))
 		return
@@ -195,13 +181,8 @@ func HandleUpdate(w http.ResponseWriter, r *http.Request) {
 func SocketConn(w http.ResponseWriter, r *http.Request) {
 	var start int = 0
 	mlogger := mlogger.GetInstance()
-	token := strings.Split(r.URL.Path, "ws/")[1]
-	if token == "" {
-		mlogger.Println("Error getting jwt string")
-		fmt.Fprint(w, "Connection rejected")
-		return
-	}
-	user := auth.GetUserFromString(token)
+	session := auth.GetSession(r)
+	user := models.FindUser("username", session.Values["user"])
 	if user == nil {
 		fmt.Fprint(w, "Rejected")
 	}
