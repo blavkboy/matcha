@@ -1,4 +1,4 @@
-Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc000110000 <nMatcha main.go:29: Starting 'Matcha' dating service API
+Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc00010e000 <nMatcha main.go:30: Starting 'Matcha' dating service API
 Matcha auth.go:48: Password match for user:  true
 Matcha auth.go:49: DEBUG INFO user_id:  ObjectIdHex("5e1e271b68238c2813e9d591")
 Matcha auth.go:48: Password match for user:  true

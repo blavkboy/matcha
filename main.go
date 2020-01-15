@@ -18,6 +18,7 @@ func main() {
 	allowedHeaders := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})
 	allowedOrigins := handlers.AllowedOrigins([]string{"http://localhost:8080"})
 	allowedMethods := handlers.AllowedMethods([]string{"OPTIONS", "GET", "POST", "PUT", "DELETE"})
+	allowedCreds := handlers.AllowCredentials()
 	mlogger := mlogger.GetInstance()
 	mlogger.Println(time.Now())
 	err, conn := database.InitDB()
@@ -38,5 +39,5 @@ func main() {
 	r.HandleFunc("/users/check", routing.HandleCheck).Methods("GET", "OPTIONS")
 	r.HandleFunc("/users/matches", routing.HandleMatches).Methods("GET", "OPTIONS")
 	r.HandleFunc("/users/matches/like", routing.HandleLikes).Methods("POST", "OPTIONS")
-	http.ListenAndServe(":4040", handlers.CORS(allowedHeaders, allowedMethods, allowedOrigins)(r))
+	http.ListenAndServe(":4040", handlers.CORS(allowedHeaders, allowedMethods, allowedOrigins, allowedCreds)(r))
 }
