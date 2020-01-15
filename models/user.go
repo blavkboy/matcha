@@ -2,12 +2,14 @@ package models
 
 import (
 	"encoding/json"
+	"fmt"
+	"net/http"
+	"strings"
+
 	"github.com/gmohlamo/matcha/database"
 	"github.com/gmohlamo/matcha/mlogger"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"net/http"
-	"strings"
 )
 
 //The user file here will deal with all structures and
@@ -18,18 +20,19 @@ import (
 //as a storage mechanism for the server to keep track
 //of user data.
 type User struct {
-	ID       bson.ObjectId `json:"id" bson:"_id"`
-	Username string        `json:"username" bson:"username"`
-	Fname    string        `json:"fname" bson:"fname"`
-	Lname    string        `json:"lname" bson:"lname"`
-	Sex      string        `json:"sex" bson:"sex"`
-	Email    string        `json:"email" bson:"email"`
-	Password string        `json:"password" bson:"password"`
-	Location GeoLocation   `json:"location" bson:"Location"`
-	Profile  Profile       `json:"profile" bson:"profile"`
+	ID        bson.ObjectId `json:"id" bson:"_id"`
+	Username  string        `json:"username" bson:"username"`
+	Fname     string        `json:"fname" bson:"fname"`
+	Lname     string        `json:"lname" bson:"lname"`
+	Sex       string        `json:"sex" bson:"sex"`
+	Email     string        `json:"email" bson:"email"`
+	Password  string        `json:"password" bson:"password"`
+	MatchDist int           `json:"matchdist" bson:"matchdist"`
+	Location  GeoLocation   `json:"location" bson:"Location"`
+	Profile   Profile       `json:"profile" bson:"profile"`
 }
 
-//constant for the cost
+//Cost constant for password encryption purposes
 var Cost int = 6
 
 //NewUser iss effectively how a new user is registered onto the
@@ -76,9 +79,8 @@ func (user *User) CheckUpdate(updatedUser User) bool {
 		if strings.Compare(updatedUser.Username, user.Username) != 0 {
 			if FindUser("username", updatedUser.Username) != nil {
 				return false
-			} else {
-				return false
 			}
+			return false
 		}
 	} else if updatedUser.Fname == "" && user.Fname != "" {
 		return false
@@ -94,6 +96,8 @@ func (user *User) CheckUpdate(updatedUser User) bool {
 	return true
 }
 
+//UpdateDiff should update the user based on the differences
+//submitted by the user
 func (user *User) UpdateDiff(update User) {
 	if strings.Compare(user.Username, update.Username) != 0 {
 		user.Username = update.Username
@@ -110,6 +114,10 @@ func (user *User) UpdateDiff(update User) {
 	if strings.Compare(user.Profile.Orientation, update.Profile.Orientation) != 0 {
 		user.Profile.Orientation = update.Profile.Orientation
 	}
+	if user.MatchDist != update.MatchDist {
+		user.MatchDist = update.MatchDist
+	}
+	fmt.Println(update)
 	user.Profile.Propic = update.Profile.Propic
 	user.Location.Coordinates = update.Location.Coordinates
 	user.Profile.Images = update.Profile.Images
@@ -157,7 +165,7 @@ func FindMatch(user *User, w http.ResponseWriter) {
 				"type":        "Point",
 				"coordinates": user.Location.Coordinates,
 			},
-			"$maxDistance": 500000,
+			"$maxDistance": user.MatchDist,
 		},
 	},
 	}).Select(bson.M{"username": 1, "Location": 1,

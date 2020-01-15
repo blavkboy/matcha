@@ -1,5 +1,62 @@
-Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc00010e000 <nMatcha main.go:30: Starting 'Matcha' dating service API
-Matcha auth.go:48: Password match for user:  true
-Matcha auth.go:49: DEBUG INFO user_id:  ObjectIdHex("5e1e271b68238c2813e9d591")
-Matcha auth.go:48: Password match for user:  true
-Matcha auth.go:49: DEBUG INFO user_id:  ObjectIdHex("5e1e271b68238c2813e9d591")
+Matcha db.go:37: mongodb session struct:  &{{{0 0} 0 0 0 0} 0xc000104000Matcha main.go:30: Starting 'Matcha' dating service API
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha auth.go:47: Password match for user:  true
+Matcha auth.go:48: DEBUG INFO user_id:  ObjectIdHex("5e1ecd3dbfc800ba44a74839")
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha auth.go:47: Password match for user:  true
+Matcha auth.go:48: DEBUG INFO user_id:  ObjectIdHex("5e1ecd3dbfc800ba44a74839")
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha routing.go:113: Saving user with password:  $2a$06$MRqmDrtX0BWVD7Vj.3PA/OMk/K9NY9qPtMCHIIbe5sdHLBx8qQw2O
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha user.go:60: Ensured Index
+Matcha user.go:67: Inserting User
+Matcha routing.go:130: 2020-01-15 13:41:38.538031 +0200 SAST m=+509.664296354
+Matcha routing.go:131: {ObjectIdHex("5e1efa72bfc8001bb0473771") menace menace menace  menace@gmail.com $2a$06$MRqmDrtX0BWVD7Vj.3PA/OMk/K9NY9qPtMCHIIbe5sdHLBx8qQw2O 50000 {Point [28.0303075 -26.2123013]} {false 0 0 0  []  [] 0 0}}
+Matcha auth.go:47: Password match for user:  true
+Matcha auth.go:48: DEBUG INFO user_id:  ObjectIdHex("5e1efa72bfc8001bb0473771")
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha auth.go:47: Password match for user:  true
+Matcha auth.go:48: DEBUG INFO user_id:  ObjectIdHex("5e1efa72bfc8001bb0473771")
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha auth.go:47: Password match for user:  true
+Matcha auth.go:48: DEBUG INFO user_id:  ObjectIdHex("5e1efa72bfc8001bb0473771")
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha auth.go:47: Password match for user:  true
+Matcha auth.go:48: DEBUG INFO user_id:  ObjectIdHex("5e1efa72bfc8001bb0473771")
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha routing.go:113: Saving user with password:  $2a$06$s9EiuHV0eiKMcxtBL8P0MuqscCMYv6pbwqBvAobYDUiSD/KR34i7.
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha user.go:60: Ensured Index
+Matcha user.go:67: Inserting User
+Matcha routing.go:130: 2020-01-15 15:05:24.90694 +0200 SAST m=+5536.259031252
+Matcha routing.go:131: {ObjectIdHex("5e1f0e14bfc8001bb0473772") mzeke zakhele madi  mzemadi@gmail.com $2a$06$s9EiuHV0eiKMcxtBL8P0MuqscCMYv6pbwqBvAobYDUiSD/KR34i7. 50000 {Point []} {false 0 0 0  []  [] 0 0}}
+Matcha auth.go:47: Password match for user:  true
+Matcha auth.go:48: DEBUG INFO user_id:  ObjectIdHex("5e1f0e14bfc8001bb0473772")
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha routing.go:59: Sending user: 
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found
+Matcha user.go:150: Error:  not found

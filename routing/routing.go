@@ -88,9 +88,9 @@ func checkReg(body models.User) bool {
 	return true
 }
 
-//HandleUser will handle requests to get the users from the browser.
-//we can abstract some of it to make the login method and let the user
-//keep his/her state using the token
+//HandleUser can be used to either Register a new user account or it can be used
+//to retrieve user information for the client requesting it. The latter requires
+//a valid session cookie to work
 func HandleUser(w http.ResponseWriter, r *http.Request) {
 	mlogger := mlogger.GetInstance()
 	if strings.Compare(r.Method, "POST") == 0 {
@@ -130,14 +130,35 @@ func HandleUser(w http.ResponseWriter, r *http.Request) {
 		mlogger.Println(time.Now())
 		mlogger.Println(body)
 	} else {
-		auth.Login(w, r)
+		session := auth.GetSession(r)
+		if session == nil {
+			w.WriteHeader(http.StatusUnauthorized)
+			w.Write([]byte("{\"success\": false}"))
+		} else {
+			user := models.FindUser("ID", session.Values["user"])
+			if user == nil {
+				w.WriteHeader(http.StatusUnauthorized)
+				w.Write([]byte("{\"success\": false}"))
+			} else {
+				user.Password = ""
+				body, err := json.Marshal(user)
+				if err != nil {
+					w.WriteHeader(http.StatusInternalServerError)
+					w.Write([]byte("{\"success\": false}"))
+					return
+				}
+				w.Write([]byte("{\"success\": true, \"user\"" + string(body) + "}"))
+			}
+		}
 	}
 }
 
+//HandleUsers will do something
 func HandleUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 }
 
+//HandleCheck I forgot what it does
 func HandleCheck(w http.ResponseWriter, r *http.Request) {
 	if strings.Compare(r.Method, "GET") == 0 {
 		fmt.Println("Got Here")
@@ -155,18 +176,21 @@ func HandleCheck(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//HandleHome was for the ego thing
 func HandleHome(w http.ResponseWriter, r *http.Request) {
 	views.RenderHome(w, auth.GetCurrentUser(r))
 }
 
+//HandleUpdate should process user account updates
 func HandleUpdate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	session := auth.GetSession(r)
-	user := models.FindUser("username", session.Values["user"])
+	user := models.FindUser("ID", session.Values["user"])
 	if user == nil {
 		w.Write([]byte("{\"success\": false}"))
 		return
 	}
+	fmt.Printf("Found the user %v\n", user)
 	var updatedUser models.User
 	json.NewDecoder(r.Body).Decode(&updatedUser)
 	if user.CheckUpdate(updatedUser) == false {
@@ -178,6 +202,7 @@ func HandleUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//SocketConn should do socket things...
 func SocketConn(w http.ResponseWriter, r *http.Request) {
 	var start int = 0
 	mlogger := mlogger.GetInstance()
